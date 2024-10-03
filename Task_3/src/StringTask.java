@@ -1,23 +1,53 @@
 package task;
 import java.util.*;
-public class StringTask
-{
-	public int lengthOfString(String s)
+import java.io.IOException;
+import exceptionhandling.InvalidInputException;
+public class StringTask extends Exception 
+{ 
+	int stringLength;
+	int ifNull;
+	public  void nullPointerError(String s ) throws InvalidInputException
 	{
-		return s.length();
+		if ( s == null )
+		{
+			throw new InvalidInputException("INVALID INPUT ");
+		}
 	}
-	public char[] toCharacterArray(String s)
+	public int getLengthOfString(String s) throws InvalidInputException
 	{
-		return s.toCharArray();
+		nullPointerError(s);
+		return s.length();	
 	}
-	public char penultimateChar(String s)
+	public char[] toCharacterArray(String s) throws InvalidInputException
 	{
-		return s.charAt(s.length() - 2);
+		nullPointerError(s);
+		return s.toCharArray();	
 	}
-	public int numberOfOccurance(String s , char c)
+	public char penultimateChar(String s) throws InvalidInputException
+	{  
+		nullPointerError(s);		
+		stringLength = getLengthOfString(s);
+		if ( stringLength < 1)
+		{
+			throw new InvalidInputException("INVALID INPUT ");
+		}
+		else
+		{
+			return s.charAt(s.length() - 2);
+		}
+	}
+	public int numberOfOccurance(String s , char c) throws InvalidInputException
 	{
+		nullPointerError(s);
+		 stringLength = getLengthOfString(s);
+		 if ( stringLength == 0)
+		 {
+			 throw new InvalidInputException("INVALID INPUT ");
+		 }
+		 else 
+		 {
 		int total = 0;
-		for ( int i = 0 ; i<s.length();i++)
+		for ( int i = 0 ; i<stringLength;i++)
 		{
 			if ( s.charAt(i) == c )
 			{
@@ -25,37 +55,92 @@ public class StringTask
 			}
 		}
 		return total;
+		 }
 	}
-	public int getGreatestPosition(String s,char c)
+	public int getGreatestPosition(String s,char c) throws InvalidInputException
 	{
+		nullPointerError(s);
 		return s.lastIndexOf(c);
 	}
-	public String getLastFiveChar(String s)
+	public String getLastCharacters(String s,int n) throws InvalidInputException
 	{
-		return s.substring((s.length()-5));
+		nullPointerError(s);
+		stringLength = getLengthOfString(s);
+		if ( stringLength < n )
+		{
+			 throw new InvalidInputException("INVALID INPUT ");
+		}
+		else 
+		{
+			return s.substring((stringLength - n));
+		}
 	}
-	public String getFirstThreeChar(String s)
+	public String getFirstCharacters(String s,int n) throws InvalidInputException
 	{
-		return s.substring(0,3);
+		nullPointerError(s);
+		stringLength = getLengthOfString(s);
+		if ( stringLength < n)
+		{
+			throw new InvalidInputException("INVALID INPUT ");
+		}
+		else 
+		{
+			return s.substring(0,n);
+		}
 	}
-	public String replaceString(String s)
+	public String replaceString(String s,String replacementString) throws InvalidInputException
 	{
-		return s.replaceFirst(s.substring(0,3),"XYZ");
+		nullPointerError(s);
+		nullPointerError(replacementString);
+		int orgStringLength = getLengthOfString(s);
+		int replacementStringLength = getLengthOfString(replacementString);
+		if ( orgStringLength > replacementStringLength )
+		{
+			return s.replaceFirst(s.substring(0,replacementStringLength),replacementString);
+		}
+		else 
+		{
+						 throw new InvalidInputException("INVALID INPUT ");
+		}
 	}
-	public boolean checkStartsWith(String s)
+	public boolean checkStartsWith(String s,String startingWith) throws InvalidInputException
 	{
-		return s.startsWith("ent");
+		nullPointerError(s);
+		nullPointerError(startingWith);
+		stringLength = getLengthOfString(s);
+		int startingWithLength = getLengthOfString(startingWith);
+		if ( stringLength >= startingWithLength )
+		{
+		return s.startsWith(startingWith);
+		}
+		else 
+		{
+			throw new InvalidInputException("INVALID INPUT ");
+		}
 	}
-	public boolean checkEndsWith(String s)
+	public boolean checkEndsWith(String s,String endingString) throws InvalidInputException 
 	{
-		return s.endsWith("le");
+		nullPointerError(s);
+		nullPointerError(endingString);
+		stringLength = getLengthOfString(s);
+		int endingStringLength = getLengthOfString(endingString);
+		if ( stringLength > endingStringLength)
+		{
+			return s.endsWith(endingString);
+		}
+		else
+		{	
+			throw new InvalidInputException("INVALID INPUT ");
+		}
 	}
-	public String toLowerCasedString(String s)
+	public String toLowerCasedString(String s) throws InvalidInputException 
 	{
+		nullPointerError(s);
 		return s.toLowerCase();
 	}
-	public String toUpperCasedString(String s)
+	public String toUpperCasedString(String s) throws InvalidInputException 
 	{
+		nullPointerError(s);
 		return s.toUpperCase();
 	}
 	public String toReverseString(String s)
@@ -69,39 +154,48 @@ public class StringTask
 		}
 		return reverseChar.toString();
 	}
-	public String stringWoSpace(String s)
+	public String getMultipleString(String string ) throws InvalidInputException
 	{
-		
+		nullPointerError(string);
+		return string;
+	}
+	public String stringWoSpace(String s) throws InvalidInputException
+	{
+		nullPointerError(s);
 		return s.replaceAll(" ","");
 	}
-	public String[] toConvertStringArray(String s)
+	public String[] toConvertStringArray(String s) throws InvalidInputException
 	{
+		nullPointerError(s);
 		return s.split(" ");
 	}
-	public String concatStrings( ArrayList<String> s)
+	public String concatStrings( ArrayList<String> s) throws InvalidInputException
 	{
-		String concatenatedString = "";
-		for ( int i =0 ;i<s.size();i++)
+		int sizeOfArray = s.size();
+		if ( sizeOfArray == 0 )
 		{
-			if ( i ==0)
-			{
-				concatenatedString = s.get(i);
-			}
-			else 
-			concatenatedString = concatenatedString +  "-" + s.get(i) ;
+						 throw new InvalidInputException("INVALID INPUT ");
 		}
-		return concatenatedString;
+		else
+		{
+		return String.join("-",s);
+		}
 	}
-	public int compareCaseSensitiveStrings(String  strOne, String strTwo)
+	public int compareCaseSensitiveStrings(String  strOne, String strTwo) throws InvalidInputException
 	{
+		nullPointerError(strOne);
+		nullPointerError(strTwo);
 		return strOne.compareTo(strTwo);
 	}
-	public int compareCaseInSensitiveStrings(String  strOne, String strTwo)
+	public int compareCaseInSensitiveStrings(String  strOne, String strTwo) throws InvalidInputException
 	{
+		nullPointerError(strOne);
+		nullPointerError(strTwo);
 		return strOne.compareToIgnoreCase(strTwo);
 	}
-	public String removeWhiteSpace(String s)
+	public String removeWhiteSpace(String s) throws InvalidInputException
 	{
+		nullPointerError(s);
 		return s.trim();
 	}
 }

@@ -2,7 +2,6 @@ package runner;
 import task.StringTask;
 import java.util.Scanner;
 import java.util.*;
-import java.io.IOException;
 import exceptionhandling.InvalidInputException;
 public class StringTestRunner
 {
@@ -12,7 +11,6 @@ public class StringTestRunner
 		Scanner scanner = new Scanner(System.in);
 		String str;
 		char character;
-		int noOfChar;
 		boolean bool  = true;
 		while(bool)
 		{
@@ -58,9 +56,9 @@ public class StringTestRunner
 					}
 			case 3 :
 					try{
-					System.out.print("ENTER A STRING TO PRINT PENULTIMATE CHAR ");
+					System.out.print("ENTER A STRING  ");
 					str = scanner.next();
-					character = taskObj.penultimateChar(str);
+					character = taskObj.getCharFromLast(str,2);
 					System.out.println("THE PENULTIMATE CHARACTER IS = "+ character);
 					}
 					catch ( Exception e)
@@ -111,10 +109,7 @@ public class StringTestRunner
 			try{
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					System.out.print("ENTER THE NUMBER OF CHARACTER TO BE PRINTED FROM LAST ");
-					noOfChar = scanner.nextInt();
-					scanner.nextLine();
-					String  lastCharacters = taskObj.getLastCharacters(str,noOfChar);
+					String  lastCharacters = taskObj.getLastCharacters(str,5);
 					System.out.println("THE SUBSTRING IS "+ lastCharacters);
 			}
 			catch ( Exception e)
@@ -129,10 +124,7 @@ public class StringTestRunner
 			{
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					System.out.print(" ENTER NUMBER OF CHARACTER TO BE PRINTED FROM STARTING ");
-					noOfChar = scanner.nextInt();
-					scanner.nextLine();
-					String firstThreeChar = taskObj.getFirstCharacters(str,noOfChar);
+					String firstThreeChar = taskObj.getFirstCharacters(str,3);
 					System.out.println("THE FIRST THREE CHARACTER IS "+ firstThreeChar);
 			}
 						catch ( Exception e)
@@ -149,9 +141,7 @@ public class StringTestRunner
 			{
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					System.out.println("ENTER THE NEW STRING TO  BE REPLACED :");
-					String replacementString = scanner.next();
-					String replacedString = taskObj.replaceString(str,replacementString);
+					String replacedString = taskObj.replaceString(str,"XYZ");
 					System.out.println("THE NEW REPLACED STRING IS "+ replacedString);
 			}
 			catch ( Exception e)
@@ -168,13 +158,15 @@ public class StringTestRunner
 				
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					System.out.print("ENTER THE STRING FOR CHECK (FROM STARTING) ");
-					String startingWith = scanner.next();
-						boolean flag = taskObj.checkStartsWith(str,startingWith);
+						boolean flag = taskObj.checkStartsWith(str,"ent");
 						if ( flag == true)
-							System.out.println("THE GIVEN STRING STARTS WITH "+startingWith);
+						{
+							System.out.println("THE GIVEN STRING STARTS WITH ent ");
+						}
 						else 
-							System.out.println("THE GIVEN STRING DOESNOT START WITH "+startingWith);
+						{
+							System.out.println("THE GIVEN STRING DOESNOT START WITH ent");
+						}
 			}
 			catch ( Exception e)
 			{
@@ -188,14 +180,16 @@ public class StringTestRunner
 					{
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					System.out.print("ENTER THE ENDING STRING FOR CHECKING ");
-					String endingString = scanner.next();
 					
-					boolean check = taskObj.checkEndsWith(str,endingString);
+					boolean check = taskObj.checkEndsWith(str,"le");
 					if ( check ==  true)
-						System.out.println("THE GIVEN STRING ENDS WITH  "+endingString);
+					{
+						System.out.println("THE GIVEN STRING ENDS WITH le ");
+					}
 					else 
-						System.out.println("THE GIVEN STRING DOESNOT ENDS WITH "+endingString);
+					{
+						System.out.println("THE GIVEN STRING DOESNOT ENDS WITH le ");
+					}
 					
 					
 					}
@@ -212,7 +206,7 @@ public class StringTestRunner
 					String loweredString = taskObj.toLowerCasedString(str);
 					System.out.println("THE LOWER CASE STRING IS "+ loweredString);
 			}
-						catch ( Exception e)
+			catch ( Exception e)
 			{
 				System.out.println(e.getMessage());
 			}
@@ -235,11 +229,22 @@ public class StringTestRunner
 					break;
 			}
 			case 13 :
-					System.out.println("ENTER A STRING ");
+			try
+			{
+					System.out.println("ENTER A STRING TO REVERSE ");
 					str = scanner.next();
 					String reversedString = taskObj.toReverseString(str);
-					System.out.println("THE REVERSED STRING IS "+ reversedString);
+					System.out.println("THE REVERSED STRING IS ");
+					System.out.println(reversedString);
+			}
+			catch ( Exception e)
+			{
+				System.out.println("input error ");
+				e.printStackTrace();
+			}
+			finally{
 					break;
+			}			
 			case 14 :
 			try{
 					System.out.println("ENTER A STRING ");
@@ -258,7 +263,7 @@ public class StringTestRunner
 			try{
 					System.out.println("ENTER A STRING ");
 					str = scanner.nextLine();
-					String concatenatedString = taskObj.stringWoSpace(str);
+					String concatenatedString = taskObj.stringWoSpace(str," ","");
 					System.out.println(concatenatedString);
 			}
 						catch ( Exception e)
@@ -272,7 +277,7 @@ public class StringTestRunner
 			try{
 					System.out.println("ENTER A STRING ");
 					str = scanner.nextLine();
-					String[] stringArray = taskObj.toConvertStringArray(str);
+					String[] stringArray = taskObj.toConvertStringArray(str," ");
 					System.out.println("THE CONVERTED STRING ARRAY IS =  ");
 					System.out.print("{");
 					for ( String s : stringArray)
@@ -302,7 +307,8 @@ public class StringTestRunner
 						String string = scanner.nextLine();
 						stringArrayList.add(string);
 					}
-					String concatenatedStringList = taskObj.concatStrings(stringArrayList);
+
+					String concatenatedStringList = taskObj.concatStrings(stringArrayList,"-");
 					System.out.println(concatenatedStringList);
 			}
 			catch ( Exception e)
@@ -324,7 +330,9 @@ public class StringTestRunner
 						System.out.println("THE TWO STRINGS ARE EQUAL ");
 					}
 					else 
+					{
 						System.out.println("THE TWO STRING ARE NOT EQUAL ");
+					}
 			}
 			catch ( Exception e)
 			{

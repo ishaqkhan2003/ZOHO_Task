@@ -1,45 +1,40 @@
 package task;
 import java.util.*;
-import java.io.IOException;
 import exceptionhandling.InvalidInputException;
-public class StringTask extends Exception 
+public class StringTask 
 { 
-	int stringLength;
-	int ifNull;
-	public  void nullPointerError(String s ) throws InvalidInputException
+	public  void checkNull(String string ) throws InvalidInputException
 	{
-		if ( s == null )
+		if ( string == null )
 		{
 			throw new InvalidInputException("INVALID INPUT ");
 		}
 	}
-	public int getLengthOfString(String s) throws InvalidInputException
+	public int getLengthOfString(String string) throws InvalidInputException
 	{
-		nullPointerError(s);
-		return s.length();	
+		checkNull(string);
+		return string.length();	
 	}
-	public char[] toCharacterArray(String s) throws InvalidInputException
+	public char[] toCharacterArray(String string) throws InvalidInputException
 	{
-		nullPointerError(s);
-		return s.toCharArray();	
+		checkNull(string);
+		return string.toCharArray();	
 	}
-	public char penultimateChar(String s) throws InvalidInputException
-	{  
-		nullPointerError(s);		
-		stringLength = getLengthOfString(s);
+	public char getCharFromLast(String string,int positionOfChar) throws InvalidInputException
+	{  	
+		int stringLength = getLengthOfString(string);
 		if ( stringLength < 1)
 		{
 			throw new InvalidInputException("INVALID INPUT ");
 		}
 		else
 		{
-			return s.charAt(s.length() - 2);
+			return string.charAt(stringLength - positionOfChar);
 		}
 	}
-	public int numberOfOccurance(String s , char c) throws InvalidInputException
+	public int numberOfOccurance(String string , char character) throws InvalidInputException
 	{
-		nullPointerError(s);
-		 stringLength = getLengthOfString(s);
+		 int stringLength = getLengthOfString(string);
 		 if ( stringLength == 0)
 		 {
 			 throw new InvalidInputException("INVALID INPUT ");
@@ -49,7 +44,7 @@ public class StringTask extends Exception
 		int total = 0;
 		for ( int i = 0 ; i<stringLength;i++)
 		{
-			if ( s.charAt(i) == c )
+			if ( string.charAt(i) == character )
 			{
 				total +=1;
 			}
@@ -57,145 +52,126 @@ public class StringTask extends Exception
 		return total;
 		 }
 	}
-	public int getGreatestPosition(String s,char c) throws InvalidInputException
+	public int getGreatestPosition(String string,char character) throws InvalidInputException
 	{
-		nullPointerError(s);
-		return s.lastIndexOf(c);
+		checkNull(string);
+		return string.lastIndexOf(character);
 	}
-	public String getLastCharacters(String s,int n) throws InvalidInputException
+	public String getLastCharacters(String string,int noOfChar) throws InvalidInputException
 	{
-		nullPointerError(s);
-		stringLength = getLengthOfString(s);
-		if ( stringLength < n )
+		int stringLength = getLengthOfString(string);
+		if ( stringLength < noOfChar )
 		{
 			 throw new InvalidInputException("INVALID INPUT ");
 		}
 		else 
 		{
-			return s.substring((stringLength - n));
+			return string.substring((stringLength - noOfChar));
 		}
 	}
-	public String getFirstCharacters(String s,int n) throws InvalidInputException
+	public String getFirstCharacters(String string,int noOfChar) throws InvalidInputException
 	{
-		nullPointerError(s);
-		stringLength = getLengthOfString(s);
-		if ( stringLength < n)
+		int stringLength = getLengthOfString(string);
+		if ( stringLength < noOfChar)
 		{
 			throw new InvalidInputException("INVALID INPUT ");
 		}
 		else 
 		{
-			return s.substring(0,n);
+			return string.substring(0,noOfChar);
 		}
 	}
-	public String replaceString(String s,String replacementString) throws InvalidInputException
+	public String replaceString(String string,String replacementString) throws InvalidInputException
 	{
-		nullPointerError(s);
-		nullPointerError(replacementString);
-		int orgStringLength = getLengthOfString(s);
+		int orgStringLength = getLengthOfString(string);
 		int replacementStringLength = getLengthOfString(replacementString);
 		if ( orgStringLength > replacementStringLength )
 		{
-			return s.replaceFirst(s.substring(0,replacementStringLength),replacementString);
+			return string.replaceFirst(string.substring(0,replacementStringLength),replacementString);
 		}
 		else 
 		{
 						 throw new InvalidInputException("INVALID INPUT ");
 		}
 	}
-	public boolean checkStartsWith(String s,String startingWith) throws InvalidInputException
+	public boolean checkStartsWith(String string,String startingWith) throws InvalidInputException
 	{
-		nullPointerError(s);
-		nullPointerError(startingWith);
-		stringLength = getLengthOfString(s);
-		int startingWithLength = getLengthOfString(startingWith);
-		if ( stringLength >= startingWithLength )
-		{
-		return s.startsWith(startingWith);
-		}
-		else 
-		{
-			throw new InvalidInputException("INVALID INPUT ");
-		}
+		int stringLength = getLengthOfString(string);
+		checkNull(startingWith);
+		return string.startsWith(startingWith);	
 	}
-	public boolean checkEndsWith(String s,String endingString) throws InvalidInputException 
+	public boolean checkEndsWith(String string,String endingString) throws InvalidInputException 
 	{
-		nullPointerError(s);
-		nullPointerError(endingString);
-		stringLength = getLengthOfString(s);
-		int endingStringLength = getLengthOfString(endingString);
-		if ( stringLength > endingStringLength)
+		int 	stringLength = getLengthOfString(string);
+		checkNull(endingString);
+		return string.endsWith(endingString);
+	}
+	public String toLowerCasedString(String string) throws InvalidInputException 
+	{
+		checkNull(string);
+		return string.toLowerCase();
+	}
+	public String toUpperCasedString(String string) throws InvalidInputException 
+	{
+		checkNull(string);
+		return string.toUpperCase();
+	}
+	public String toReverseString(String string) throws InvalidInputException 
+	{
+		int inputstringLength = getLengthOfString(string);
+		char[] inputCharArray = toCharacterArray(string);
+		char[] reverseCharArray = new char[inputstringLength];
+		int j = inputstringLength-1;
+		for ( int i = 0 ;i<inputstringLength;i++)
 		{
-			return s.endsWith(endingString);
+			reverseCharArray[j] = inputCharArray[i];
+			j--;
 		}
-		else
-		{	
-			throw new InvalidInputException("INVALID INPUT ");
-		}
-	}
-	public String toLowerCasedString(String s) throws InvalidInputException 
-	{
-		nullPointerError(s);
-		return s.toLowerCase();
-	}
-	public String toUpperCasedString(String s) throws InvalidInputException 
-	{
-		nullPointerError(s);
-		return s.toUpperCase();
-	}
-	public String toReverseString(String s)
-	{
-		char ch;
-		String reverseChar="";
-		for ( int i = (s.length()-1);i>=0;i--)
-		{
-			ch = s.charAt(i);
-			reverseChar+=ch;
-		}
-		return reverseChar.toString();
+		//String reversedString = new String(reverseCharArray);
+		return new String(reverseCharArray);		
 	}
 	public String getMultipleString(String string ) throws InvalidInputException
 	{
-		nullPointerError(string);
+		checkNull(string);
 		return string;
 	}
-	public String stringWoSpace(String s) throws InvalidInputException
+	public String stringWoSpace(String string,String oldDelimittingChar, String newDelimittingChar) throws InvalidInputException
 	{
-		nullPointerError(s);
-		return s.replaceAll(" ","");
+		checkNull(string);
+		return string.replaceAll(oldDelimittingChar,newDelimittingChar);
 	}
-	public String[] toConvertStringArray(String s) throws InvalidInputException
+	public String[] toConvertStringArray(String string,String delimittingCharacter) throws InvalidInputException
 	{
-		nullPointerError(s);
-		return s.split(" ");
+		checkNull(string);
+		return string.split(delimittingCharacter);
 	}
-	public String concatStrings( ArrayList<String> s) throws InvalidInputException
+	public String concatStrings( List<String> stringArray, String sepCharacter) throws InvalidInputException
 	{
-		int sizeOfArray = s.size();
+		int sizeOfArray = stringArray.size();
 		if ( sizeOfArray == 0 )
 		{
-						 throw new InvalidInputException("INVALID INPUT ");
+			 throw new InvalidInputException("INVALID INPUT ");
 		}
 		else
 		{
-		return String.join("-",s);
+		return String.join(sepCharacter,stringArray);
 		}
 	}
 	public int compareCaseSensitiveStrings(String  strOne, String strTwo) throws InvalidInputException
 	{
-		nullPointerError(strOne);
-		nullPointerError(strTwo);
+		checkNull(strOne);
+		checkNull(strTwo);
 		return strOne.compareTo(strTwo);
 	}
 	public int compareCaseInSensitiveStrings(String  strOne, String strTwo) throws InvalidInputException
 	{
-		nullPointerError(strOne);
-		nullPointerError(strTwo);
+		checkNull(strOne);
+		checkNull(strTwo);
 		return strOne.compareToIgnoreCase(strTwo);
 	}
-	public String removeWhiteSpace(String s) throws InvalidInputException
+	public String removeWhiteSpace(String string) throws InvalidInputException
 	{
-		nullPointerError(s);
-		return s.trim();
+		checkNull(string);
+		return string.trim();
 	}
 }

@@ -11,7 +11,8 @@ public class StringTask
 		}
 	}
 	public void checkEmpty(String string ) throws DataValidationException
-	{
+	{ 
+		checkNull(string);
 		if ( string.isEmpty())
 		{
 			throw new DataValidationException("The given string is empty.");
@@ -148,7 +149,7 @@ public class StringTask
 		checkNull(string);
 		return string;
 	}
-	public String stringWoSpace(String string,String oldDelimittingChar, String newDelimittingChar) throws DataValidationException
+	public String changeDelimitter(String string,String oldDelimittingChar,String newDelimittingChar) throws DataValidationException
 	{
 		checkNull(string);
 		return string.replaceAll(oldDelimittingChar,newDelimittingChar);

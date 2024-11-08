@@ -5,9 +5,11 @@ import java.util.*;
 import com.exceptionhandling.DataValidationException;
 public class StringTestRunner
 {
+	 
 	StringTask taskObj = new StringTask();
 	public static void main(String[] args)
 	{
+		 
 		StringTestRunner runnerObj = new StringTestRunner();
 		Scanner scanner = new Scanner(System.in);
 		String str;
@@ -29,12 +31,13 @@ public class StringTestRunner
 		switch (choice)
 			{
 			case 1:
-					runnerObj.getLengthOfString(args[0]);
+					runnerObj.findLengthOfString(args[0]);
+					
 					break;
 			case 2 :
 					System.out.print("ENTER A STRING TO CONVERT");
 					str = scanner.next();
-					runnerObj.toCharacterArray(str);		
+					runnerObj.convertToCharArray(str);		
 					break;					
 			case 3 :
 					System.out.print("ENTER A STRING  ");
@@ -46,19 +49,19 @@ public class StringTestRunner
 					str = scanner.next();
 					System.out.print("ENTER A CHAR TO FIND NUMBER OF OCCURENCE :");
 					character = scanner.next().charAt(0);
-					runnerObj.getNoOfOccurance(str,character);
+					runnerObj.findNoOfOccurance(str,character);
 					break;					
 			case 5 :
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
 					System.out.println("ENTER A CHAR TO FIND GREATEST POSITION OF IT :");
 					character  = scanner.next().charAt(0);
-					runnerObj.getGreatestPos(str,character);
+					runnerObj.findGreatestPos(str,character);
 					break;
 			case 6 :
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					runnerObj.getLastFiveChar(str);
+					runnerObj.findLastFiveChar(str);
 					break;					
 			case 7 :
 					System.out.print("ENTER A STRING ");
@@ -84,12 +87,12 @@ public class StringTestRunner
 			case 12 :
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					runnerObj.toLowerCaseStr(str);
+					runnerObj.convertLowerCaseStr(str);
 					break;					
 			case 11 :
 					System.out.print("ENTER A STRING ");
 					str = scanner.next();
-					runnerObj.toUpperCaseStr(str);
+					runnerObj.convertUpperCaseStr(str);
 					break;
 			case 13 :
 					System.out.print("ENTER A STRING TO REVERSE ");
@@ -100,7 +103,7 @@ public class StringTestRunner
 			case 14 :
 					System.out.print("ENTER A STRING ");
 					str = scanner.nextLine();
-					runnerObj.getMultipleString(str);
+					runnerObj.getMultipleStrInput(str);
 					break;
 			case 15 :
 					System.out.print("ENTER A STRING ");
@@ -110,7 +113,7 @@ public class StringTestRunner
 			case 16 :
 					System.out.print("ENTER A STRING ");
 					str = scanner.nextLine();
-					runnerObj.toStringArray(str);	
+					runnerObj.convertToStrArray(str);	
 					break;
 			case 17 :
 					System.out.print("ENTER NO. OF STRINGS ");
@@ -162,11 +165,12 @@ public class StringTestRunner
 		}
 		catch (Exception e)
 		{
+			//System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		}
 	}
-	public void getLengthOfString(String str) throws Exception
+	public void findLengthOfString(String str) throws Exception
 	{
 		try	
 		{
@@ -178,7 +182,7 @@ public class StringTestRunner
 			throw new Exception("Exception thrown by runner class",e);
 		}
 	}
-	public void toCharacterArray(String str) throws Exception
+	public void convertToCharArray(String str) throws Exception
 	{
 		try
 		{
@@ -199,14 +203,14 @@ public class StringTestRunner
 	{
 		try
 		{
-			System.out.println("THE PENULTIMATE CHARACTER IS = "+ taskObj.getCharFromLast(str,2));
+			System.out.println("THE PENULTIMATE CHARACTER IS = "+ taskObj.getCharFromLast(str,-2));
 		}
 		catch ( DataValidationException e)
 		{
 			throw new Exception("Exception thrown by runner class",e);
 		}
 	}
-	public void getNoOfOccurance(String str, char character) throws Exception
+	public void findNoOfOccurance(String str, char character) throws Exception
 	{
 		try
 		{
@@ -219,7 +223,7 @@ public class StringTestRunner
 			throw new Exception("Exception thrown by runner class",e);
 		}
 	}
-	public void getGreatestPos(String str, char character) throws Exception
+	public void findGreatestPos(String str, char character) throws Exception
 	{
 		try 
 		{
@@ -231,7 +235,7 @@ public class StringTestRunner
 			throw new Exception("Exception thrown by runner class",e);
 		}
 	}
-	public void getLastFiveChar(String str) throws Exception
+	public void findLastFiveChar(String str) throws Exception
 	{
 		try
 		{
@@ -272,15 +276,16 @@ public class StringTestRunner
 				index = scanner.nextInt();
 				scanner.nextLine();
 			}*/						
-			String replacedString = taskObj.replaceString(str,"XYZ",1,3,0);
+			String replacedString = taskObj.replaceFromPrefix(str,"XYZ",3);
 			System.out.println("THE NEW REPLACED STRING IS "+ replacedString);
 			}
+
 		catch ( DataValidationException e)
 		{
 			throw new Exception("Exception thrown by runner class",e);
 		}
 	}
-	public void checkStartsWithEnt(String str) throws Exception
+	public void checkStartsWithEnt(String str) throws DataValidationException
 	{
 		try 
 		{
@@ -296,10 +301,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void checkEndsWithLe(String str) throws Exception
+	public void checkEndsWithLe(String str) throws DataValidationException
 	{
 		try 
 		{					
@@ -315,10 +320,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void toUpperCaseStr(String str) throws Exception
+	public void convertUpperCaseStr(String str) throws DataValidationException
 	{
 		try
 		{
@@ -327,10 +332,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void toLowerCaseStr(String str) throws Exception
+	public void convertLowerCaseStr(String str) throws Exception
 	{
 		try 
 		{
@@ -356,7 +361,7 @@ public class StringTestRunner
 
 		}
 	}
-	public void getMultipleString(String str) throws Exception
+	public void getMultipleStrInput(String str) throws Exception
 	{
 		try{
 			String multipleStringInput = taskObj.getMultipleString(str);
@@ -377,7 +382,7 @@ public class StringTestRunner
 			throw new Exception("Exception thrown by runner class",e);
 		}
 	}
-	public void toStringArray(String str) throws Exception
+	public void convertToStrArray(String str) throws Exception
 	{
 		try
 		{

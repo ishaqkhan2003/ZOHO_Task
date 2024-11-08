@@ -1,59 +1,38 @@
 package com.stringtask;
 import java.util.*;
 import com.exceptionhandling.DataValidationException;
+import com.utility.UtilityClass;
 public class StringTask 
 { 
-	public  void checkNull(String string ) throws DataValidationException
-	{
-		if ( string == null )
-		{
-			throw new DataValidationException("The input string is null.");
-		}
-	}
-	public void checkEmpty(String string ) throws DataValidationException
-	{ 
-		checkNull(string);
-		if ( string.isEmpty())
-		{
-			throw new DataValidationException("The given string is empty.");
-		}
-	}
 	public int getLength(String string) throws DataValidationException
 	{
-		checkNull(string);
-		return string.length();	
+		UtilityClass.checkNull(string);
+		return UtilityClass.getLength(string);	
 	}
-	public boolean comprStrAndNum(String string,int value) throws DataValidationException
-	{
-		if ( getLength(string)<value )
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+
 	public char[] toCharacterArray(String string) throws DataValidationException
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string.toCharArray();	
 	}
 	public char getCharFromLast(String string,int positionOfChar) throws DataValidationException
 	{  	
-		int stringLength = getLength(string);
-		checkEmpty(string);
-		if ( comprStrAndNum(string,positionOfChar ))
+		int stringLength = UtilityClass.getLength(string);
+		if ( stringLength == 0)
 		{
-			throw new DataValidationException(" The given position is greater than the original string length. ");
+			throw new DataValidationException("The given string is empty.");
 		}
+		UtilityClass.checkBoundary(stringLength,positionOfChar);
 		return string.charAt(stringLength - positionOfChar);
 		
 	}
 	public int numberOfOccurance(String string , char character) throws DataValidationException
 	{
-		int stringLength = getLength(string);
-		checkEmpty(string);
+		int stringLength = UtilityClass.getLength(string);
+		if ( stringLength == 0)
+		{
+			throw new DataValidationException("The given string is empty.");
+		}
 		int total = 0;
 		for ( int i = 0 ; i<stringLength;i++)
 		{
@@ -67,72 +46,69 @@ public class StringTask
 	}
 	public int getGreatestPosition(String string,char character) throws DataValidationException
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string.lastIndexOf(character);
 	}
 	public String getLastCharacters(String string,int noOfChar) throws DataValidationException
 	{
-		int stringLength = getLength(string);
-		if ( comprStrAndNum(string,noOfChar ))
-		{
-			 throw new DataValidationException("The string length is less than the required number of characters from the end.");
-		}
+		int stringLength = UtilityClass.getLength(string);
+		UtilityClass.checkBoundary(stringLength,noOfChar);
 		return string.substring((stringLength - noOfChar));
 	}
 	public String getFirstCharacters(String string,int noOfChar) throws DataValidationException
 	{
-	//	int stringLength = getLength(string);
-		if ( getLength(string) < noOfChar)
-		{
-			throw new DataValidationException("The string length is less than the required number of characters from the end.");
-		}
+		int stringLength = UtilityClass.getLength(string);
+		UtilityClass.checkBoundary(stringLength,noOfChar);
 		return string.substring(0,noOfChar);
 	}
-	public String replaceString(String string,String replacementString,int typeOf,int noOfChar,int index) throws DataValidationException
+	public String replaceFromPrefix(String string,String replacementString,int noOfChar) throws DataValidationException
 	{
-		if (comprStrAndNum(string,noOfChar))
-		{
-			throw new DataValidationException("The string length is less than the required number of characters from the end.");
-		}
-		checkNull(replacementString);
-		switch ( typeOf )
-		{
-			case 1 :
-					return string.replaceFirst(getFirstCharacters(string,noOfChar),replacementString);
-			case 2 : 
-				//	 getFirstCharacters(string , getLength(string)-noOfChar);
-					return getFirstCharacters(string , getLength(string)-noOfChar)+replacementString;
-			case 3 : 
-					return string.replace(string.substring(index,noOfChar+index),replacementString);
-			default :
-					throw new DataValidationException("Invalid Choice is Entered");
-		}
+		int stringLength = UtilityClass.getLength(string);
+		UtilityClass.checkBoundary(stringLength,noOfChar);
+		UtilityClass.checkNull(replacementString);
+		return string.replaceFirst(getFirstCharacters(string,noOfChar),replacementString);
 	}
+	public String replaceFromSuffix(String string,String replacementString,int noOfChar) throws DataValidationException
+	{
+		int stringLength = UtilityClass.getLength(string);
+		UtilityClass.checkBoundary(stringLength,noOfChar);
+		UtilityClass.checkNull(replacementString);
+		return getFirstCharacters(string , getLength(string)-noOfChar)+replacementString;
+	}
+	public String replaceFromAnyIndex(String string,String replacementString,int noOfChar,int index) throws DataValidationException
+	{
+		int stringLength = UtilityClass.getLength(string);
+		UtilityClass.checkBoundary(stringLength,noOfChar);
+		UtilityClass.checkNull(replacementString);
+		return string.replace(string.substring(index,noOfChar+index),replacementString);
+	}
+		
+		
 	public boolean checkStartsWith(String string,String startingWith) throws DataValidationException
 	{
-		checkNull(string);
-		checkNull(startingWith);
+		UtilityClass.checkNull(string);
+		UtilityClass.checkNull(startingWith);
 		return string.startsWith(startingWith);	
 	}
 	public boolean checkEndsWith(String string,String endingString) throws DataValidationException 
 	{
-		checkNull(string);
-		checkNull(endingString);
+		UtilityClass.checkNull(string);
+		UtilityClass.checkNull(endingString);
 		return string.endsWith(endingString);
 	}
 	public String toLowerCasedString(String string) throws DataValidationException 
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string.toLowerCase();
 	}
 	public String toUpperCasedString(String string) throws DataValidationException 
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string.toUpperCase();
 	}
 	public String toReverseString(String string) throws DataValidationException 
 	{
-		int inputstringLength = getLength(string);
+		int inputstringLength = UtilityClass.getLength(string);
 		char[] inputCharArray = toCharacterArray(string);
 		char[] reverseCharArray = new char[inputstringLength];
 		int j = inputstringLength-1;
@@ -141,22 +117,21 @@ public class StringTask
 			reverseCharArray[j] = inputCharArray[i];
 			j--;
 		}
-		//String reversedString = new String(reverseCharArray);
 		return new String(reverseCharArray);		
 	}
 	public String getMultipleString(String string ) throws DataValidationException
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string;
 	}
 	public String changeDelimitter(String string,String oldDelimittingChar,String newDelimittingChar) throws DataValidationException
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string.replaceAll(oldDelimittingChar,newDelimittingChar);
 	}
 	public String[] toConvertStringArray(String string,String delimittingCharacter) throws DataValidationException
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string.split(delimittingCharacter);
 	}
 	public String concatStrings( List<String> stringArray, String sepCharacter) throws DataValidationException
@@ -171,19 +146,19 @@ public class StringTask
 	}
 	public int compareCaseSensitiveStrings(String  strOne, String strTwo) throws DataValidationException
 	{
-		checkNull(strOne);
-		checkNull(strTwo);
+		UtilityClass.checkNull(strOne);
+		UtilityClass.checkNull(strTwo);
 		return strOne.compareTo(strTwo);
 	}
 	public int compareCaseInSensitiveStrings(String  strOne, String strTwo) throws DataValidationException
 	{
-		checkNull(strOne);
-		checkNull(strTwo);
+		UtilityClass.checkNull(strOne);
+		UtilityClass.checkNull(strTwo);
 		return strOne.compareToIgnoreCase(strTwo);
 	}
 	public String removeWhiteSpace(String string) throws DataValidationException
 	{
-		checkNull(string);
+		UtilityClass.checkNull(string);
 		return string.trim();
 	}
 }

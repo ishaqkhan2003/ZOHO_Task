@@ -1,5 +1,5 @@
-package com.stringrunner;
-import com.stringtask.StringTask;
+package com.string.stringrunner;
+import com.string.stringtask.StringTask;
 import java.util.Scanner;
 import java.util.*;
 import com.exceptionhandling.DataValidationException;
@@ -13,6 +13,7 @@ public class StringTestRunner
 		StringTestRunner runnerObj = new StringTestRunner();
 		Scanner scanner = new Scanner(System.in);
 		String str;
+
 		char character;
 		boolean bool  = true;
 		System.out.println("1.Find Length of string \n2.Convert String to character array\n3.To find the penultimate character\n4.Find number of occurance of a character"+
@@ -169,8 +170,9 @@ public class StringTestRunner
 			e.printStackTrace();
 		}
 		}
+		scanner.close();
 	}
-	public void findLengthOfString(String str) throws Exception
+	public void findLengthOfString(String str) throws DataValidationException
 	{
 		try	
 		{
@@ -179,10 +181,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void convertToCharArray(String str) throws Exception
+	public void convertToCharArray(String str) throws DataValidationException
 	{
 		try
 		{
@@ -196,10 +198,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void getPenultimateChat(String str) throws Exception
+	public void getPenultimateChat(String str) throws DataValidationException
 	{
 		try
 		{
@@ -207,10 +209,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void findNoOfOccurance(String str, char character) throws Exception
+	public void findNoOfOccurance(String str, char character) throws DataValidationException
 	{
 		try
 		{
@@ -220,10 +222,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void findGreatestPos(String str, char character) throws Exception
+	public void findGreatestPos(String str, char character) throws DataValidationException
 	{
 		try 
 		{
@@ -232,10 +234,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void findLastFiveChar(String str) throws Exception
+	public void findLastFiveChar(String str) throws DataValidationException
 	{
 		try
 		{
@@ -244,10 +246,10 @@ public class StringTestRunner
 		}
 		catch (DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void getFirstThreechar(String str) throws Exception
+	public void getFirstThreechar(String str) throws DataValidationException
 	{
 		try
 		{
@@ -256,10 +258,10 @@ public class StringTestRunner
 		}
 		catch (DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}	
 	}
-	public void replaceWithXYZ(String str) throws Exception
+	public void replaceWithXYZ(String str) throws DataValidationException
 	{
 		try 
 		{
@@ -282,7 +284,7 @@ public class StringTestRunner
 
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
 	public void checkStartsWithEnt(String str) throws DataValidationException
@@ -335,7 +337,7 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void convertLowerCaseStr(String str) throws Exception
+	public void convertLowerCaseStr(String str) throws DataValidationException
 	{
 		try 
 		{
@@ -344,10 +346,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			System.out.println(e.getMessage());
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void reverseString(String str) throws Exception
+	public void reverseString(String str) throws DataValidationException
 	{
 		try
 		{
@@ -357,11 +359,11 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 
 		}
 	}
-	public void getMultipleStrInput(String str) throws Exception
+	public void getMultipleStrInput(String str) throws DataValidationException
 	{
 		try{
 			String multipleStringInput = taskObj.getMultipleString(str);
@@ -369,20 +371,20 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void concatenateString(String str) throws Exception
+	public void concatenateString(String str) throws DataValidationException
 	{
 		try{
 			System.out.println(taskObj.changeDelimitter(str," ",""));
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void convertToStrArray(String str) throws Exception
+	public void convertToStrArray(String str) throws DataValidationException
 	{
 		try
 		{
@@ -398,10 +400,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void toMergeString(List<String> stringArrayList) throws Exception
+	public void toMergeString(List<String> stringArrayList) throws DataValidationException
 	{
 		try{
 			String concatenatedStringList = taskObj.concatStrings(stringArrayList,"-");
@@ -409,10 +411,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void compareStrCaseSensitive(String stringOne ,String stringTwo) throws Exception
+	public void compareStrCaseSensitive(String stringOne ,String stringTwo) throws DataValidationException
 	{
 		try
 		{
@@ -428,10 +430,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void compareStrCsaseInsensitive(String strOne,String strTwo) throws Exception
+	public void compareStrCsaseInsensitive(String strOne,String strTwo) throws DataValidationException
 	{
 		try
 		{
@@ -447,10 +449,10 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void trimWhiteSpace(String str) throws Exception
+	public void trimWhiteSpace(String str) throws DataValidationException
 	{
 		try
 		{
@@ -458,7 +460,7 @@ public class StringTestRunner
 		}
 		catch ( DataValidationException e)
 		{
-			throw new Exception("Exception thrown by runner class",e);
+			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}		
 }

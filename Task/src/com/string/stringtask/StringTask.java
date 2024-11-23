@@ -1,4 +1,4 @@
-package com.stringtask;
+package com.string.stringtask;
 import java.util.*;
 import com.exceptionhandling.DataValidationException;
 import com.utility.UtilityClass;
@@ -44,6 +44,7 @@ public class StringTask
 		return total;
 		 
 	}
+
 	public int getGreatestPosition(String string,char character) throws DataValidationException
 	{
 		UtilityClass.checkNull(string);
@@ -124,11 +125,7 @@ public class StringTask
 		UtilityClass.checkNull(string);
 		return string;
 	}
-	public String changeDelimitter(String string,String oldDelimittingChar,String newDelimittingChar) throws DataValidationException
-	{
-		UtilityClass.checkNull(string);
-		return string.replaceAll(oldDelimittingChar,newDelimittingChar);
-	}
+
 	public String[] toConvertStringArray(String string,String delimittingCharacter) throws DataValidationException
 	{
 		UtilityClass.checkNull(string);
@@ -149,6 +146,11 @@ public class StringTask
 		UtilityClass.checkNull(strOne);
 		UtilityClass.checkNull(strTwo);
 		return strOne.compareTo(strTwo);
+	}
+	public String changeDelimitter(String string,String oldDelimittingChar,String newDelimittingChar) throws DataValidationException
+	{
+		UtilityClass.checkNull(string);
+		return string.replaceAll(oldDelimittingChar,newDelimittingChar);
 	}
 	public int compareCaseInSensitiveStrings(String  strOne, String strTwo) throws DataValidationException
 	{

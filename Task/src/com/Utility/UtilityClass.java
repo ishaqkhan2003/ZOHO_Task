@@ -21,4 +21,10 @@ public  class UtilityClass
 		checkNull(string);
 		return string.length();
 	}
+	public static int getLength(StringBuilder string) throws DataValidationException
+	{
+		checkNull(string);
+		return string.length();
+	}
+
 }

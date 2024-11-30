@@ -2,54 +2,44 @@ package com.stringbuilder.stringbuildertask;
 import java.util.*;
 import com.exceptionhandling.DataValidationException;
 import com.utility.UtilityClass;
-public class StringBuilderTask
-{
-	public StringBuilder getStrBuilder()
-	{
+public class StringBuilderTask{
+	public StringBuilder getStrBuilder(){
 		return new StringBuilder();
 	}
-	public StringBuilder getStrBuilder(String str) 
-	{
+	public StringBuilder getStrBuilder(String str) {
 		return new StringBuilder(str);
 	}
-	public StringBuilder getStrBuilder(List<String> strList,char delimitingChar) throws DataValidationException
-	{
+	public StringBuilder getStrBuilder(String[] strArray,char delimitingChar) throws DataValidationException{
 		StringBuilder strBuilder = getStrBuilder();
-		strBuilder = appendToStrBuilder(strBuilder,strList,delimitingChar);
+		strBuilder = appendToStrBuilder(strBuilder,strArray,delimitingChar);
 		return strBuilder;
 	}
-	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,List<String> strList) throws DataValidationException
-	{
+	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,String[]  strArray) throws DataValidationException{
 		UtilityClass.checkNull(strBuilder);
-		for (String element : strList)
+		for (String element : strArray)
 		{
 			strBuilder.append(element);
 		}
 		return strBuilder;
 	}
-	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,List<String> strList,char delimitingChar) throws DataValidationException
-	{
+	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,String[]  strArray,char delimitingChar) throws DataValidationException{
 		UtilityClass.checkNull(strBuilder);
 		if ( UtilityClass.getLength(strBuilder) != 0){
 			strBuilder.append(delimitingChar);
 		}
-		int sizeOfList = strList.size();
-		for (int i = 0;i<sizeOfList;i++)
-		{
-			if (i<(sizeOfList-1))
-			{
-				strBuilder.append(strList.get(i) + delimitingChar);
+		int sizeOfArray = UtilityClass.getLength(strArray);
+		for (int i = 0;i< sizeOfArray;i++){
+			if (i<(sizeOfArray-1)){
+				strBuilder.append(strArray[i] + delimitingChar);
 			}
-			else
-			{
-				strBuilder.append(strList.get(i));
+			else{
+				strBuilder.append(strArray[i]);
 			}
 			
 		}
 		return strBuilder;
 	}
-	public int getLastIndexOf(StringBuilder strBuilder,String str) throws DataValidationException
-	{
+	public int getLastIndexOf(StringBuilder strBuilder,String str) throws DataValidationException{
 		UtilityClass.checkNull(strBuilder);
 		return strBuilder.lastIndexOf(str);
 	}
@@ -67,11 +57,26 @@ public class StringBuilderTask
 		UtilityClass.checkNull(strBuilder);
 		return strBuilder.delete(start,end);
 	}
-	public StringBuilder delFromStrBuilder(StringBuilder strBuilder,String str) throws DataValidationException
+	public int getCustomIndexOf(StringBuilder strBuilder, String delimiter, int position)
 	{
-		UtilityClass.checkNull(strBuilder);
-		int index = getIndexOfStr(strBuilder,str);
-		return strBuilder.delete(index,UtilityClass.getLength(str));
+		//UtilsHub.checkNull(sb);
+		//UtilsHub.checkNull(str);
+		int index = 0;
+		int fromIndex = 0;    
+		for (int i=0; i<position; i++)
+		{
+			index = strBuilder.indexOf(delimiter, fromIndex);
+			fromIndex = index+1;
+		} 
+		return index;
+	}
+		
+	public StringBuilder delFromStrBuilder(StringBuilder strBuilder,int position,String delimiter) throws DataValidationException
+	{
+		//UtilityClass.checkNull(strBuilder);
+		int start = getCustomIndexOf(strBuilder,delimiter,position-1);
+		int end = getCustomIndexOf(strBuilder,delimiter,position);
+		return delFromStrBuilder(strBuilder,start,end);
 	}
 	public StringBuilder replaceCharStrBuilder(StringBuilder strBuilder,char oldChar,char newChar) throws DataValidationException
 	{
@@ -97,7 +102,4 @@ public class StringBuilderTask
 		UtilityClass.checkNull(strBuilder);
 		return strBuilder.replace(start,end,str);
 	}		
-}
-		
-		
-		
+}		

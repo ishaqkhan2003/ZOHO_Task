@@ -6,11 +6,10 @@ import com.stringbuilder.stringbuildertask.StringBuilderTask;
 public class StringBuilderRunner{
 	StringBuilderTask taskObj = new StringBuilderTask();
 	public static void main(String[] args){
-		List<String> strList = new ArrayList<>();
 		StringBuilder strBuilder;
 		String string;
 		StringBuilderRunner runnerObj = new StringBuilderRunner();
-
+		String[] strArray;
 		Scanner scanner = new Scanner(System.in);
 		boolean bool  = true;
 		int i;
@@ -24,9 +23,8 @@ public class StringBuilderRunner{
 			case 1 :
 					strBuilder =   runnerObj.createStrBuilder();
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					strList.clear();
-					strList = runnerObj.appendToList(strList,1,scanner);
-					strBuilder = runnerObj.appendString(strBuilder,strList);
+					strArray = runnerObj.appendToStrArray(1,scanner);
+					strBuilder = runnerObj.appendString(strBuilder,strArray);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("The Final String is " + strBuilder.toString());
 					break;
@@ -35,47 +33,41 @@ public class StringBuilderRunner{
 					string = scanner.nextLine();
 					strBuilder = runnerObj.createStrBuilder(string);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					strList.clear();
-					strList = runnerObj.appendToList(strList,4,scanner);
-					strBuilder = runnerObj.appendString(strBuilder,strList,'#');
+					strArray = runnerObj.appendToStrArray(4,scanner);
+					strBuilder = runnerObj.appendString(strBuilder,strArray,'#');
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("The Final String is " + strBuilder.toString());
 					break;
 			case 3 :
-					strList.clear();
-					strList = runnerObj.appendToList(strList,2,scanner);
-					strBuilder = runnerObj.createStrBuilder(strList,' ');
+					strArray = runnerObj.appendToStrArray(2,scanner);
+					strBuilder = runnerObj.createStrBuilder(strArray,' ');
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.print("Enter a string to insert ");
-					string = scanner.nextLine();
-					int test = runnerObj.getIndexOf(strBuilder," ");
-					System.out.println("debugging insert "+test);
-					strBuilder = runnerObj.insertString(strBuilder,string+' ',test+1);
+					string = scanner.nextLine();tring+' ',runnerObj.getIndexOf(strBuilder," ")+1);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("The Final String is " + strBuilder.toString());
 					break;
 			case 4 : 
-					strList.clear();
-					strList = runnerObj.appendToList(strList,2,scanner);
-					strBuilder = runnerObj.createStrBuilder(strList,' ');
+					//strList.clear();
+					//strList = runnerObj.appendToList(strList,2,scanner);
+					strArray = runnerObj.appendToStrArray(2,scanner);
+					strBuilder = runnerObj.createStrBuilder(strArray,' ');
 					runnerObj.printLengthOfStrBldr(strBuilder);	
-					strBuilder = runnerObj.delString(strBuilder,strList.get(0));
+					strBuilder = runnerObj.delString(strBuilder,1," ");
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("String after deletion " + strBuilder.toString());
 					break;
-			case 5 :
-					strList.clear();
-					runnerObj.appendToList(strList,3,scanner);	
-					strBuilder = runnerObj.createStrBuilder(strList,' ');
+			case 5 :	
+					strArray = runnerObj.appendToStrArray(3,scanner);
+					strBuilder = runnerObj.createStrBuilder(strArray,' ');
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.replaceChar(strBuilder,' ','-');
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.printStrbuilder(strBuilder);
 					break;
 			case 6 :
-					strList.clear();
-					strList = runnerObj.appendToList(strList,3,scanner);	
-					strBuilder = runnerObj.createStrBuilder(strList,' ');
+					strArray = runnerObj.appendToStrArray(3,scanner);
+					strBuilder = runnerObj.createStrBuilder(strArray,' ');
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.reverseStrBuilder(strBuilder);
 					runnerObj.printLengthOfStrBldr(strBuilder);
@@ -90,7 +82,6 @@ public class StringBuilderRunner{
 					System.out.print("THE LENGTH IS LESS THAN 10 ,PLEASE ENTER A STRING ");
 					string = scanner.nextLine();
 					if ( UtilityClass.getLength(string) < 10 ){
-						//System.out.println("OOPS the entered string is less than 10 characters ");
 					}
 					else{
 						check = false;
@@ -112,7 +103,6 @@ public class StringBuilderRunner{
 					System.out.print("THE LENGTH IS LESS THAN 10 ,ENTER A STRING ");
 					string = scanner.nextLine();
 					if ( UtilityClass.getLength(string) < 10 ){
-						//System.out.println("OOPS the entered string is less than 10 characters ");
 					}
 					else{
 						check = false;
@@ -128,20 +118,18 @@ public class StringBuilderRunner{
 						
 					
 			case 9 :
-					strList.clear();
-					strList = runnerObj.appendToList(strList,3,scanner);	
-					strBuilder = runnerObj.createStrBuilder(strList,'#');		
+					strArray = runnerObj.appendToStrArray(3,scanner);
+					strBuilder = runnerObj.createStrBuilder(strArray,'#');		
 					int index = runnerObj.getIndexOf(strBuilder,"#");
 					runnerObj.printStrbuilder(strBuilder);
 					System.out.println("The first index of # is "+ index);
 					break;
 			case 10 :
-					strList.clear();
-					strList = runnerObj.appendToList(strList,3,scanner);	
-					strBuilder = runnerObj.createStrBuilder(strList,'#');		
+					strArray = runnerObj.appendToStrArray(3,scanner);
+					strBuilder = runnerObj.createStrBuilder(strArray,'#');		
 					index = runnerObj.getLastIndexOf(strBuilder,"#");
 					runnerObj.printStrbuilder(strBuilder);
-					System.out.println("The first last of # is "+ index);
+					System.out.println("The last of # is "+ index);
 					break;	
 			case 11 :
 					bool = false;
@@ -155,6 +143,16 @@ public class StringBuilderRunner{
 				e.printStackTrace();
 			}
 		}
+	}
+	public String[] appendToStrArray(int noOfStr,Scanner scanner){
+		System.out.println("Enter "+noOfStr+ " string ");
+		String string;
+		String[] strArray =  new String[noOfStr];
+		for (  int i = 0;i<noOfStr;i++){
+			string = scanner.nextLine();
+			strArray[i]= string ;
+		}
+		return strArray;
 	}
 	public List appendToList(List<String> strList,int noOfStr,Scanner scanner){
 		System.out.println("Enter "+noOfStr+ " string ");
@@ -183,8 +181,8 @@ public class StringBuilderRunner{
 	public StringBuilder createStrBuilder(String str) {
 		return taskObj.getStrBuilder(str);
 	}
-	public StringBuilder createStrBuilder(List<String> strList,char delimitingChar) throws DataValidationException{
-		return taskObj.getStrBuilder(strList,delimitingChar);
+	public StringBuilder createStrBuilder(String[] strArray,char delimitingChar) throws DataValidationException{
+		return taskObj.getStrBuilder(strArray,delimitingChar);
 	}
 	public int getLastIndexOf(StringBuilder strBuilder,String string) throws DataValidationException{
 		try{
@@ -202,17 +200,17 @@ public class StringBuilderRunner{
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
 		}
 	}
-	public StringBuilder appendString(StringBuilder strBuilder,List<String> strList) throws DataValidationException{
+	public StringBuilder appendString(StringBuilder strBuilder,String[] strArray) throws DataValidationException{
 		try{
-			return taskObj.appendToStrBuilder(strBuilder,strList);
+			return taskObj.appendToStrBuilder(strBuilder,strArray);
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
 		}
 	}
-	public StringBuilder appendString(StringBuilder strBuilder,List<String> strList,char delimitingChar) throws DataValidationException{
+	public StringBuilder appendString(StringBuilder strBuilder,String[] strArray,char delimitingChar) throws DataValidationException{
 		try{
-			return taskObj.appendToStrBuilder(strBuilder,strList,'#');
+			return taskObj.appendToStrBuilder(strBuilder,strArray,'#');
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
@@ -234,9 +232,9 @@ public class StringBuilderRunner{
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
 		}
 	}
-	public StringBuilder delString(StringBuilder strBuilder,String str) throws DataValidationException{
+	public StringBuilder delString(StringBuilder strBuilder,int position,String delimiter) throws DataValidationException{
 		try{
-			return taskObj.delFromStrBuilder(strBuilder,str);
+			return taskObj.delFromStrBuilder(strBuilder,position,delimiter);
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);

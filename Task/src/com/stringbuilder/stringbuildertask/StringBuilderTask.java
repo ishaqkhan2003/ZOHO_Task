@@ -9,21 +9,17 @@ public class StringBuilderTask{
 	public StringBuilder getStrBuilder(String str) {
 		return new StringBuilder(str);
 	}
-	public StringBuilder getStrBuilder(String[] strArray,char delimitingChar) throws DataValidationException{
+	public StringBuilder getStrBuilder(String[] strArray,String delimitingChar) throws DataValidationException{
 		StringBuilder strBuilder = getStrBuilder();
 		strBuilder = appendToStrBuilder(strBuilder,strArray,delimitingChar);
 		return strBuilder;
 	}
-	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,String[]  strArray) throws DataValidationException{
-		UtilityClass.checkNull(strBuilder);
-		for (String element : strArray)
-		{
-			strBuilder.append(element);
-		}
-		return strBuilder;
+	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,String[]  strArray) throws DataValidationException {
+		return appendToStrBuilder(strBuilder,strArray,"");
 	}
-	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,String[]  strArray,char delimitingChar) throws DataValidationException{
+	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,String[]  strArray,String delimitingChar) throws DataValidationException{
 		UtilityClass.checkNull(strBuilder);
+		UtilityClass.checkNull(strArray);
 		if ( UtilityClass.getLength(strBuilder) != 0){
 			strBuilder.append(delimitingChar);
 		}
@@ -57,10 +53,8 @@ public class StringBuilderTask{
 		UtilityClass.checkNull(strBuilder);
 		return strBuilder.delete(start,end);
 	}
-	public int getCustomIndexOf(StringBuilder strBuilder, String delimiter, int position)
-	{
-		//UtilsHub.checkNull(sb);
-		//UtilsHub.checkNull(str);
+	public int getCustomIndexOf(StringBuilder strBuilder, String delimiter, int position) throws DataValidationException{
+		UtilityClass.checkNull(strBuilder);
 		int index = 0;
 		int fromIndex = 0;    
 		for (int i=0; i<position; i++)

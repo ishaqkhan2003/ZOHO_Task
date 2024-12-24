@@ -7,12 +7,12 @@ public class StringBuilderRunner{
 	StringBuilderTask taskObj = new StringBuilderTask();
 	public static void main(String[] args){
 		StringBuilder strBuilder;
-		String string;
+		String string,delimiter;
 		StringBuilderRunner runnerObj = new StringBuilderRunner();
 		String[] strArray;
 		Scanner scanner = new Scanner(System.in);
 		boolean bool  = true;
-		int i;
+		int i,noOfStr;
 		System.out.println("ENTER TASK NUMBER 1-10 AND 11 TO EXIT");
 		while(bool){
 			System.out.print("ENTER TASK NUMBER ");
@@ -23,7 +23,10 @@ public class StringBuilderRunner{
 			case 1 :
 					strBuilder =   runnerObj.createStrBuilder();
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					strArray = runnerObj.appendToStrArray(1,scanner);
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
 					strBuilder = runnerObj.appendString(strBuilder,strArray);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("The Final String is " + strBuilder.toString());
@@ -33,41 +36,70 @@ public class StringBuilderRunner{
 					string = scanner.nextLine();
 					strBuilder = runnerObj.createStrBuilder(string);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					strArray = runnerObj.appendToStrArray(4,scanner);
-					strBuilder = runnerObj.appendString(strBuilder,strArray,'#');
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					System.out.print("Enter delimitting char ");
+					delimiter = scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
+					strBuilder = runnerObj.appendString(strBuilder,strArray,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("The Final String is " + strBuilder.toString());
 					break;
 			case 3 :
-					strArray = runnerObj.appendToStrArray(2,scanner);
-					strBuilder = runnerObj.createStrBuilder(strArray,' ');
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
+					System.out.print("Enter delimitting char ");
+					delimiter = scanner.nextLine();
+					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.print("Enter a string to insert ");
-					string = scanner.nextLine();tring+' ',runnerObj.getIndexOf(strBuilder," ")+1);
+					string = scanner.nextLine();
+					System.out.print("Enter position for insertion ");
+					int insertIndex = scanner.nextInt();
+					scanner.nextLine();
+					runnerObj.insertString(strBuilder,string+delimiter,insertIndex+1);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("The Final String is " + strBuilder.toString());
 					break;
 			case 4 : 
-					//strList.clear();
-					//strList = runnerObj.appendToList(strList,2,scanner);
-					strArray = runnerObj.appendToStrArray(2,scanner);
-					strBuilder = runnerObj.createStrBuilder(strArray,' ');
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
+					System.out.print("Enter delimitting char ");
+					delimiter = scanner.nextLine();					
+					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);	
-					strBuilder = runnerObj.delString(strBuilder,1," ");
+					strBuilder = runnerObj.delString(strBuilder,1,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					System.out.println("String after deletion " + strBuilder.toString());
 					break;
-			case 5 :	
-					strArray = runnerObj.appendToStrArray(3,scanner);
-					strBuilder = runnerObj.createStrBuilder(strArray,' ');
-					runnerObj.printLengthOfStrBldr(strBuilder);
-					runnerObj.replaceChar(strBuilder,' ','-');
+			case 5 : 
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
+					System.out.print("Enter delimitting char ");
+					delimiter = scanner.nextLine();					
+					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);
+					runnerObj.printLengthOfStrBldr(strBuilder);					
+					System.out.print("Enter  new delimitting char ");
+					char newDelimiter = scanner.next().charAt(0);
+					runnerObj.replaceChar(strBuilder,delimiter.charAt(0),newDelimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.printStrbuilder(strBuilder);
 					break;
-			case 6 :
-					strArray = runnerObj.appendToStrArray(3,scanner);
-					strBuilder = runnerObj.createStrBuilder(strArray,' ');
+			case 6 :					 
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
+					System.out.print("Enter delimitting char ");
+					delimiter = scanner.nextLine();					
+					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.reverseStrBuilder(strBuilder);
 					runnerObj.printLengthOfStrBldr(strBuilder);
@@ -117,17 +149,28 @@ public class StringBuilderRunner{
 					break;
 						
 					
-			case 9 :
-					strArray = runnerObj.appendToStrArray(3,scanner);
-					strBuilder = runnerObj.createStrBuilder(strArray,'#');		
-					int index = runnerObj.getIndexOf(strBuilder,"#");
+			case 9 : 
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
+					System.out.print("Enter delimitting char ");
+					delimiter = scanner.nextLine();					
+					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);	
+					int index = runnerObj.getIndexOf(strBuilder,delimiter);
 					runnerObj.printStrbuilder(strBuilder);
 					System.out.println("The first index of # is "+ index);
 					break;
 			case 10 :
-					strArray = runnerObj.appendToStrArray(3,scanner);
-					strBuilder = runnerObj.createStrBuilder(strArray,'#');		
-					index = runnerObj.getLastIndexOf(strBuilder,"#");
+					 
+					System.out.print("Enter no of strings to add ");
+					noOfStr = scanner.nextInt();
+					scanner.nextLine();
+					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
+					System.out.print("Enter delimitting char ");
+					delimiter = scanner.nextLine();					
+					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);	
+					index = runnerObj.getLastIndexOf(strBuilder,delimiter);
 					runnerObj.printStrbuilder(strBuilder);
 					System.out.println("The last of # is "+ index);
 					break;	
@@ -181,7 +224,7 @@ public class StringBuilderRunner{
 	public StringBuilder createStrBuilder(String str) {
 		return taskObj.getStrBuilder(str);
 	}
-	public StringBuilder createStrBuilder(String[] strArray,char delimitingChar) throws DataValidationException{
+	public StringBuilder createStrBuilder(String[] strArray,String delimitingChar) throws DataValidationException{
 		return taskObj.getStrBuilder(strArray,delimitingChar);
 	}
 	public int getLastIndexOf(StringBuilder strBuilder,String string) throws DataValidationException{
@@ -208,9 +251,9 @@ public class StringBuilderRunner{
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
 		}
 	}
-	public StringBuilder appendString(StringBuilder strBuilder,String[] strArray,char delimitingChar) throws DataValidationException{
+	public StringBuilder appendString(StringBuilder strBuilder,String[] strArray,String delimitingChar) throws DataValidationException{
 		try{
-			return taskObj.appendToStrBuilder(strBuilder,strArray,'#');
+			return taskObj.appendToStrBuilder(strBuilder,strArray,delimitingChar);
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);

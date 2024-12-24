@@ -12,16 +12,8 @@ public class StringTestRunner
 		 
 		StringTestRunner runnerObj = new StringTestRunner();
 		Scanner scanner = new Scanner(System.in);
-		String str;
-
-		char character;
 		boolean bool  = true;
-		System.out.println("1.Find Length of string \n2.Convert String to character array\n3.To find the penultimate character\n4.Find number of occurance of a character"+
-							"\n5.Find greatest position of a character\n6.To print last 5 character of string\n7.To print first 3 character\n8.Replace first character with XYZ"+
-							"\n9.To check if string starts with ent\n10.To check if string ends with le\n11.Convert into lowercase\n12.Convert into uppercase"+
-							"\n13.To reverse a string\n14.Accept string line with multiple strings\n15.Accept multiple line string and remove space\n16.Accept multiple line string and enclose into string  array" +
-							"\n17.Accept multiple line string and merge with -\n18.To compare string case sensitive\n19.To compare string case insensitive"+
-							"\n20.To trim the space at end or beginning\n21.Exit\n22.Show task Menu");
+		runnerObj.printTasks();
 		while(bool)
 		{
 		System.out.print("Enter the task number ");
@@ -36,128 +28,69 @@ public class StringTestRunner
 					
 					break;
 			case 2 :
-					System.out.print("ENTER A STRING TO CONVERT");
-					str = scanner.next();
-					runnerObj.convertToCharArray(str);		
+					runnerObj.convertToCharArray(scanner);		
 					break;					
 			case 3 :
-					System.out.print("ENTER A STRING  ");
-					str = scanner.next();
-					runnerObj.getPenultimateChat(str);
+					runnerObj.getPenultimateChat(scanner);
 					break;
 			case 4 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					System.out.print("ENTER A CHAR TO FIND NUMBER OF OCCURENCE :");
-					character = scanner.next().charAt(0);
-					runnerObj.findNoOfOccurance(str,character);
+					runnerObj.findNoOfOccurance(scanner);
 					break;					
 			case 5 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					System.out.println("ENTER A CHAR TO FIND GREATEST POSITION OF IT :");
-					character  = scanner.next().charAt(0);
-					runnerObj.findGreatestPos(str,character);
+					runnerObj.findGreatestPos(scanner);
 					break;
 			case 6 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					runnerObj.findLastFiveChar(str);
+					runnerObj.findLastFiveChar(scanner);
 					break;					
 			case 7 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					runnerObj.getFirstThreechar(str);
+					runnerObj.getFirstThreechar(scanner);
 				 	break;
 					
 			case 8 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					runnerObj.replaceWithXYZ(str);
+					runnerObj.replaceWithXYZ(scanner);
 					break;
 			case 9 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					runnerObj.checkStartsWithEnt(str);
+					runnerObj.checkStartsWithEnt(scanner);
 					break;
 			case 10 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					runnerObj.checkEndsWithLe(str);
+					runnerObj.checkEndsWithLe(scanner);
 					break;
 			case 12 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					runnerObj.convertLowerCaseStr(str);
+					runnerObj.convertLowerCaseStr(scanner);
 					break;					
 			case 11 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.next();
-					runnerObj.convertUpperCaseStr(str);
+					runnerObj.convertUpperCaseStr(scanner);
 					break;
 			case 13 :
-					System.out.print("ENTER A STRING TO REVERSE ");
-					str = scanner.next();
-					runnerObj.reverseString(str);
+					runnerObj.reverseString(scanner);
 					break;
 								
 			case 14 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.nextLine();
-					runnerObj.getMultipleStrInput(str);
+					runnerObj.getMultipleStrInput(scanner);
 					break;
 			case 15 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.nextLine();
-					runnerObj.concatenateString(str);
+					runnerObj.concatenateString(scanner);
 					break;
 			case 16 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.nextLine();
-					runnerObj.convertToStrArray(str);	
+					runnerObj.convertToStrArray(scanner);	
 					break;
 			case 17 :
-					System.out.print("ENTER NO. OF STRINGS ");
-					int count = scanner.nextInt();
-					scanner.nextLine();
-					ArrayList<String> stringArrayList = new ArrayList<>();
-					System.out.printf("ENTER %d STRINGS ",count); 
-					for ( int i =1 ;i<= count;i++)
-					{
-						String string = scanner.nextLine();
-						stringArrayList.add(string);
-					}
-					runnerObj.toMergeString(stringArrayList);
+					runnerObj.toMergeString(scanner);
 					break;
 			case 18 :
-					System.out.print("ENTER STRING 1 ");
-					String stringOne = scanner.nextLine();
-					System.out.print("ENTER STRING TWO ");
-					String stringTwo = scanner.nextLine();
-					runnerObj.compareStrCaseSensitive(stringOne,stringTwo);
+					runnerObj.compareStrCaseSensitive(scanner);
 					break;
 			case 19 :
-					System.out.print("ENTER STRING 1 ");
-					String strOne = scanner.nextLine();
-					System.out.print("ENTER STRING TWO ");
-					String strTwo = scanner.nextLine();
-					runnerObj.compareStrCaseSensitive(strOne,strTwo);
+					runnerObj.compareStrCsaseInsensitive(scanner);
 					break;
 			case 20 :
-					System.out.print("ENTER A STRING ");
-					str = scanner.nextLine();
-					runnerObj.trimWhiteSpace(str);
+					runnerObj.trimWhiteSpace(scanner);
 					break;
 			case 21 :
 					bool = false;
 					break;
 			case 22:
-					System.out.println("1.Find Length of string \n2.Convert String to character array\n3.To find the penultimate character\n4.Find number of occurance of a character"+
-									"\n5.Find greatest position of a character\n6.To print last 5 character of string\n7.To print first 3 character\n8.Replace first character with XYZ"+
-									"\n9.To check if string starts with ent\n10.To check if string ends with le\n11.Convert into lowercase\n12.Convert into uppercase"+
-									"\n13.To reverse a string\n14.Accept string line with multiple strings\n15.Accept multiple line string and remove space\n16.Accept multiple line string and enclose into string  array"+ 
-									"\n17.Accept multiple line string and merge with -\n18.To compare string case sensitive\n19.To compare string case insensitive"+
-									"\n20.To trim the space at end or beginning\n21.Exit\n22.Show task Menu");	
+					runnerObj.printTasks();
 					break;			
 			default :
 					System.out.println("PLEASE ENTER A VALID TASK NUMBER ");
@@ -166,12 +99,25 @@ public class StringTestRunner
 		}
 		catch (Exception e)
 		{
-			//System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		}
 		scanner.close();
 	}
+	public void printTasks(){
+		System.out.println("1.Find Length of string \n2.Convert String to character array\n3.To find the penultimate character\n4.Find number of occurance of a character"+
+									"\n5.Find greatest position of a character\n6.To print last 5 character of string\n7.To print first 3 character\n8.Replace first character with XYZ"+
+									"\n9.To check if string starts with ent\n10.To check if string ends with le\n11.Convert into lowercase\n12.Convert into uppercase"+
+									"\n13.To reverse a string\n14.Accept string line with multiple strings\n15.Accept multiple line string and remove space\n16.Accept multiple line string and enclose into string  array"+ 
+									"\n17.Accept multiple line string and merge with -\n18.To compare string case sensitive\n19.To compare string case insensitive"+
+									"\n20.To trim the space at end or beginning\n21.Exit\n22.Show task Menu");	
+	}
+		
+	public String getInputString(Scanner scanner){
+		System.out.print("ENTER A STRING TO CONVERT");
+		return scanner.next();
+	}
+		
 	public void findLengthOfString(String str) throws DataValidationException
 	{
 		try	
@@ -184,10 +130,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void convertToCharArray(String str) throws DataValidationException
+	public void convertToCharArray(Scanner scanner) throws DataValidationException
 	{
 		try
-		{
+		{ 
+			String str = getInputString(scanner);
 			char[] chrArray = taskObj.toCharacterArray(str); 
 			for ( char c : chrArray)
 			{
@@ -201,10 +148,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void getPenultimateChat(String str) throws DataValidationException
+	public void getPenultimateChat(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String  str = getInputString(scanner);
 			System.out.println("THE PENULTIMATE CHARACTER IS = "+ taskObj.getCharFromLast(str,-2));
 		}
 		catch ( DataValidationException e)
@@ -212,10 +160,13 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void findNoOfOccurance(String str, char character) throws DataValidationException
+	public void findNoOfOccurance(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String  str = getInputString(scanner);
+			System.out.print("ENTER A CHAR TO FIND NUMBER OF OCCURENCE :");
+			char character = scanner.next().charAt(0);
 			int occurance = taskObj.numberOfOccurance(str,character);
 			System.out.printf("THE NUMBER OF TIMES %c OCCURRED IS = %d",character,occurance);
 			System.out.println();
@@ -225,10 +176,13 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void findGreatestPos(String str, char character) throws DataValidationException
+	public void findGreatestPos(Scanner scanner) throws DataValidationException
 	{
 		try 
 		{
+			String  str = getInputString(scanner);
+			System.out.println("ENTER A CHAR TO FIND GREATEST POSITION OF IT :");
+			char character  = scanner.next().charAt(0);
 			System.out.printf("THE LAST OCCURANCE OF %c IS AT THE INDEX %d ",character,taskObj.getGreatestPosition(str,character));
 			System.out.println();
 		}
@@ -237,10 +191,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void findLastFiveChar(String str) throws DataValidationException
+	public void findLastFiveChar(Scanner scanner) throws DataValidationException
 	{
 		try
-		{
+		{ 
+			String  str = getInputString(scanner);
 			String  lastCharacters = taskObj.getLastCharacters(str,5);
 			System.out.println("THE SUBSTRING IS "+ lastCharacters);
 		}
@@ -249,10 +204,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void getFirstThreechar(String str) throws DataValidationException
+	public void getFirstThreechar(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String  str = getInputString(scanner);
 			String firstThreeChar = taskObj.getFirstCharacters(str,3);
 			System.out.println("THE FIRST THREE CHARACTER IS "+ firstThreeChar);
 		}
@@ -261,23 +217,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}	
 	}
-	public void replaceWithXYZ(String str) throws DataValidationException
+	public void replaceWithXYZ(Scanner scanner) throws DataValidationException
 	{
 		try 
-		{
-		/*	int index =0;
-			System.out.println("ENTER POSITION FOR REPLACEMENT : \n1.Prefix\n2.Suffix\n3.Any");
-			int typeOf = scanner.nextInt();
-			scanner.nextLine();
-			System.out.println("ENTER NUMBER OF CHARACTER TO BE RPLACED");
-			int noOfChar = scanner.nextInt();
-			scanner.nextLine();
-			if ( typeOf == 3 )
-			{
-				System.out.println("ENTER THE INDEX FOR REPLACEMENT ");
-				index = scanner.nextInt();
-				scanner.nextLine();
-			}*/						
+		{	
+			String  str = getInputString(scanner);
 			String replacedString = taskObj.replaceFromPrefix(str,"XYZ",3);
 			System.out.println("THE NEW REPLACED STRING IS "+ replacedString);
 			}
@@ -287,10 +231,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void checkStartsWithEnt(String str) throws DataValidationException
+	public void checkStartsWithEnt(Scanner scanner) throws DataValidationException
 	{
 		try 
 		{
+			String  str = getInputString(scanner);
 			boolean flag = taskObj.checkStartsWith(str,"ent");
 			if ( flag == true)
 			{
@@ -306,10 +251,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void checkEndsWithLe(String str) throws DataValidationException
+	public void checkEndsWithLe(Scanner scanner) throws DataValidationException
 	{
 		try 
-		{					
+		{	
+			String  str = getInputString(scanner);
 			boolean check = taskObj.checkEndsWith(str,"le");
 			if ( check ==  true)
 			{
@@ -325,10 +271,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void convertUpperCaseStr(String str) throws DataValidationException
+	public void convertUpperCaseStr(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String  str = getInputString(scanner);
 			String upperCasedString = taskObj.toUpperCasedString(str);
 			System.out.println("THE UPPER CASED STRING IS "+ upperCasedString);
 		}
@@ -337,10 +284,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void convertLowerCaseStr(String str) throws DataValidationException
+	public void convertLowerCaseStr(Scanner scanner) throws DataValidationException
 	{
 		try 
 		{
+			String  str = getInputString(scanner);
 			String loweredString = taskObj.toLowerCasedString(str);
 			System.out.println("THE LOWER CASE STRING IS "+ loweredString);
 		}
@@ -349,10 +297,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void reverseString(String str) throws DataValidationException
+	public void reverseString(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String  str = getInputString(scanner);
 			String reversedString = taskObj.toReverseString(str);
 			System.out.println("THE REVERSED STRING IS ");
 			System.out.println(reversedString);
@@ -363,9 +312,10 @@ public class StringTestRunner
 
 		}
 	}
-	public void getMultipleStrInput(String str) throws DataValidationException
+	public void getMultipleStrInput(Scanner scanner) throws DataValidationException
 	{
 		try{
+			String  str = getInputString(scanner);
 			String multipleStringInput = taskObj.getMultipleString(str);
 			System.out.println("THE MULTIPLE STRING LINE IS = "+ multipleStringInput );
 		}
@@ -374,9 +324,10 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void concatenateString(String str) throws DataValidationException
+	public void concatenateString(Scanner scanner) throws DataValidationException
 	{
 		try{
+			String  str = getInputString(scanner);
 			System.out.println(taskObj.changeDelimitter(str," ",""));
 		}
 		catch ( DataValidationException e)
@@ -384,10 +335,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void convertToStrArray(String str) throws DataValidationException
+	public void convertToStrArray(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String  str = getInputString(scanner);
 			String[] stringArray = taskObj.toConvertStringArray(str," ");
 			System.out.println("THE CONVERTED STRING ARRAY IS =  ");
 			System.out.print("{");
@@ -403,9 +355,18 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void toMergeString(List<String> stringArrayList) throws DataValidationException
+	public void toMergeString(Scanner scanner) throws DataValidationException
 	{
 		try{
+			System.out.print("ENTER NO. OF STRINGS ");
+			int count = scanner.nextInt();
+			scanner.nextLine();
+			ArrayList<String> stringArrayList = new ArrayList<>();
+			System.out.printf("ENTER %d STRINGS ",count); 
+			for ( int i =1 ;i<= count;i++)
+			{ 
+				stringArrayList.add(scanner.nextLine());
+			}
 			String concatenatedStringList = taskObj.concatStrings(stringArrayList,"-");
 			System.out.println(concatenatedStringList);
 		}
@@ -414,10 +375,13 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void compareStrCaseSensitive(String stringOne ,String stringTwo) throws DataValidationException
+	public void compareStrCaseSensitive(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String stringOne = getInputString(scanner);
+			String stringTwo = getInputString(scanner);
+			
 			int checkEquals = taskObj.compareCaseSensitiveStrings(stringOne,stringTwo);
 			if ( checkEquals == 0)
 			{
@@ -433,11 +397,14 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void compareStrCsaseInsensitive(String strOne,String strTwo) throws DataValidationException
+	public void compareStrCsaseInsensitive(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
-			int equalsCheck = taskObj.compareCaseInSensitiveStrings(strOne,strTwo);
+			
+			String stringOne = getInputString(scanner);
+			String stringTwo = getInputString(scanner);
+			int equalsCheck = taskObj.compareCaseInSensitiveStrings(stringOne,stringTwo);
 			if ( equalsCheck == 0)
 			{
 				System.out.println("THE TWO STRINGS ARE EQUAL ");
@@ -452,10 +419,11 @@ public class StringTestRunner
 			throw new DataValidationException("Exception thrown by runner class",e);
 		}
 	}
-	public void trimWhiteSpace(String str) throws DataValidationException
+	public void trimWhiteSpace(Scanner scanner) throws DataValidationException
 	{
 		try
 		{
+			String  str = getInputString(scanner);
 			System.out.println("STRING AFTER REMOVING WHITESPACES "+ taskObj.removeWhiteSpace(str));
 		}
 		catch ( DataValidationException e)

@@ -1,6 +1,6 @@
 package com.utility ;
 import com.exceptionhandling.DataValidationException;
-public  class UtilityClass {
+public  class Utility {
 	public static void checkNull(Object obj) throws DataValidationException{
 		if ( obj == null )
 		{
@@ -21,7 +21,8 @@ public  class UtilityClass {
 		checkNull(string);
 		return string.length();
 	}
-	public static int getLength(String[] strArray){
+	public static int getLength(String[] strArray)throws DataValidationException{
+		checkNull(strArray);
 		return strArray.length;
 	}
 

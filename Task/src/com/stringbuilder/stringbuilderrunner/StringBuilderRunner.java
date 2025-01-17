@@ -1,7 +1,7 @@
 package com.stringbuilder.stringbuilderrunner;
 import java.util.*;
 import com.exceptionhandling.DataValidationException;
-import com.utility.UtilityClass;
+import com.utility.Utility;
 import com.stringbuilder.stringbuildertask.StringBuilderTask;
 public class StringBuilderRunner{
 	StringBuilderTask taskObj = new StringBuilderTask();
@@ -12,8 +12,9 @@ public class StringBuilderRunner{
 		String[] strArray;
 		Scanner scanner = new Scanner(System.in);
 		boolean bool  = true;
-		int i,noOfStr;
+		int i,noOfStr,start,end,lengthOfStr;
 		System.out.println("ENTER TASK NUMBER 1-10 AND 11 TO EXIT");
+		runnerObj.showTask(scanner);
 		while(bool){
 			System.out.print("ENTER TASK NUMBER ");
 			int choice = scanner.nextInt();
@@ -36,6 +37,7 @@ public class StringBuilderRunner{
 					string = scanner.nextLine();
 					strBuilder = runnerObj.createStrBuilder(string);
 					runnerObj.printLengthOfStrBldr(strBuilder);
+					runnerObj.printStrbuilder(strBuilder);
 					System.out.print("Enter no of strings to add ");
 					noOfStr = scanner.nextInt();
 					scanner.nextLine();
@@ -44,7 +46,7 @@ public class StringBuilderRunner{
 					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
 					strBuilder = runnerObj.appendString(strBuilder,strArray,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					System.out.println("The Final String is " + strBuilder.toString());
+					runnerObj.printStrbuilder(strBuilder);
 					break;
 			case 3 :
 					System.out.print("Enter no of strings to add ");
@@ -52,17 +54,18 @@ public class StringBuilderRunner{
 					scanner.nextLine();
 					strArray = runnerObj.appendToStrArray(noOfStr,scanner);
 					System.out.print("Enter delimitting char ");
-					delimiter = scanner.nextLine();
+					delimiter = scanner.nextLine();					
 					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
+					runnerObj.printStrbuilder(strBuilder);
 					System.out.print("Enter a string to insert ");
 					string = scanner.nextLine();
 					System.out.print("Enter position for insertion ");
 					int insertIndex = scanner.nextInt();
 					scanner.nextLine();
-					runnerObj.insertString(strBuilder,string+delimiter,insertIndex+1);
+					runnerObj.insertString(strBuilder,string,delimiter,insertIndex);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					System.out.println("The Final String is " + strBuilder.toString());
+					runnerObj.printStrbuilder(strBuilder);
 					break;
 			case 4 : 
 					System.out.print("Enter no of strings to add ");
@@ -75,7 +78,7 @@ public class StringBuilderRunner{
 					runnerObj.printLengthOfStrBldr(strBuilder);	
 					strBuilder = runnerObj.delString(strBuilder,1,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					System.out.println("String after deletion " + strBuilder.toString());
+					runnerObj.printStrbuilder(strBuilder);
 					break;
 			case 5 : 
 					System.out.print("Enter no of strings to add ");
@@ -85,10 +88,11 @@ public class StringBuilderRunner{
 					System.out.print("Enter delimitting char ");
 					delimiter = scanner.nextLine();					
 					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);
-					runnerObj.printLengthOfStrBldr(strBuilder);					
+					runnerObj.printLengthOfStrBldr(strBuilder);	
+					runnerObj.printStrbuilder(strBuilder);					
 					System.out.print("Enter  new delimitting char ");
-					char newDelimiter = scanner.next().charAt(0);
-					runnerObj.replaceChar(strBuilder,delimiter.charAt(0),newDelimiter);
+					String newDelimiter = scanner.nextLine();
+					runnerObj.replaceChar(strBuilder,delimiter,newDelimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.printStrbuilder(strBuilder);
 					break;
@@ -101,54 +105,55 @@ public class StringBuilderRunner{
 					delimiter = scanner.nextLine();					
 					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);
 					runnerObj.printLengthOfStrBldr(strBuilder);
+					runnerObj.printStrbuilder(strBuilder);
 					runnerObj.reverseStrBuilder(strBuilder);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.printStrbuilder(strBuilder);
 					break;
 			case 7 : 
-					boolean check = true;
-					System.out.print(" ENTER A STRING ");
-					string = scanner.nextLine();
-					if ( UtilityClass.getLength(string) < 10 ){
-					while (check){
-					System.out.print("THE LENGTH IS LESS THAN 10 ,PLEASE ENTER A STRING ");
-					string = scanner.nextLine();
-					if ( UtilityClass.getLength(string) < 10 ){
-					}
-					else{
-						check = false;
-					}
-					}
-					}
+					string = runnerObj.createStr(scanner);
 					strBuilder = runnerObj.createStrBuilder(string);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					strBuilder = runnerObj.delString(strBuilder,6,8);
+					while(true){
+					System.out.print("Enter starting index ");
+					start = scanner.nextInt();
+					scanner.nextLine();
+					System.out.print("Enter ending index ");
+					end = scanner.nextInt();
+					scanner.nextLine();
+					lengthOfStr = Utility.getLength(strBuilder);
+					if ( start >= 0 && end < lengthOfStr-1){
+						break;
+					}
+					System.out.print("Enter replacement string ");
+					}
+					strBuilder = runnerObj.delString(strBuilder,start,end);
 					runnerObj.printLengthOfStrBldr(strBuilder);
 					runnerObj.printStrbuilder(strBuilder);
 					break;
 			case 8 :
-					 check = true;
-					System.out.print("ENTER A STRING ");
-					string = scanner.nextLine();
-					if ( UtilityClass.getLength(string) < 10 ){
-					while (check){
-					System.out.print("THE LENGTH IS LESS THAN 10 ,ENTER A STRING ");
-					string = scanner.nextLine();
-					if ( UtilityClass.getLength(string) < 10 ){
-					}
-					else{
-						check = false;
-					}
-					}
-					}
+					string = runnerObj.createStr(scanner);
 					strBuilder = runnerObj.createStrBuilder(string);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					strBuilder = runnerObj.replaceString(strBuilder,6,8,"XYZ");
+					while (true ){
+						System.out.print("Enter starting index ");
+						start = scanner.nextInt();	
+						scanner.nextLine();
+						System.out.print("Enter ending index ");
+						end = scanner.nextInt();
+						scanner.nextLine();						
+						lengthOfStr = Utility.getLength(strBuilder);
+						if ( start >= 0 && end < lengthOfStr-1){
+							break;
+						}
+						System.out.print("Enter replacement string ");
+						}
+					System.out.print("Enter replacement string ");
+					String replacementStr = scanner.nextLine();
+					strBuilder = runnerObj.replaceString(strBuilder,start,end,replacementStr);
 					runnerObj.printLengthOfStrBldr(strBuilder);
-					runnerObj.printStrbuilder(strBuilder);
-					break;
-						
-					
+					runnerObj.printStrbuilder(strBuilder);						
+					break;					
 			case 9 : 
 					System.out.print("Enter no of strings to add ");
 					noOfStr = scanner.nextInt();
@@ -159,10 +164,9 @@ public class StringBuilderRunner{
 					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);	
 					int index = runnerObj.getIndexOf(strBuilder,delimiter);
 					runnerObj.printStrbuilder(strBuilder);
-					System.out.println("The first index of # is "+ index);
+					System.out.println("The first index of delimiter is "+ index);
 					break;
-			case 10 :
-					 
+			case 10 :					 
 					System.out.print("Enter no of strings to add ");
 					noOfStr = scanner.nextInt();
 					scanner.nextLine();
@@ -172,10 +176,13 @@ public class StringBuilderRunner{
 					strBuilder = runnerObj.createStrBuilder(strArray,delimiter);	
 					index = runnerObj.getLastIndexOf(strBuilder,delimiter);
 					runnerObj.printStrbuilder(strBuilder);
-					System.out.println("The last of # is "+ index);
+					System.out.println("The last of delimiter is "+ index);
 					break;	
 			case 11 :
 					bool = false;
+					break;
+			case 12 :
+					runnerObj.showTask(scanner);
 					break;
 			default :
 					System.out.println("Enter a valid task ");
@@ -186,6 +193,21 @@ public class StringBuilderRunner{
 				e.printStackTrace();
 			}
 		}
+	}
+	public void showTask(Scanner scanner){
+		System.out.println("Task Menu :");
+		System.out.println("1. Add a String ");
+		System.out.println("2. String with separator ");
+		System.out.println("3. Insert a String ");
+		System.out.println("4. Delete a String using position ");
+		System.out.println("5. Replace delimiter position ");
+		System.out.println("6. Reverse a String");
+		System.out.println("7. Delete String using index");
+		System.out.println("8. Replace String using index ");
+		System.out.println("9. Print last index of delimiter ");
+		System.out.println("10.Print first index of delimiter ");
+		System.out.println("11.Exit ");
+		System.out.println("12.Show menu ");
 	}
 	public String[] appendToStrArray(int noOfStr,Scanner scanner){
 		System.out.println("Enter "+noOfStr+ " string ");
@@ -212,7 +234,7 @@ public class StringBuilderRunner{
 	}
 	public void printLengthOfStrBldr(StringBuilder strBuilder)throws DataValidationException{
 		try{
-			System.out.println("The Length of string is = " + UtilityClass.getLength(strBuilder));
+			System.out.println("The Length of string is = " + Utility.getLength(strBuilder));
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
@@ -237,7 +259,7 @@ public class StringBuilderRunner{
 	}
 	public int  getIndexOf(StringBuilder strBuilder, String string)throws DataValidationException{
 		try{
-			return taskObj.getIndexOfStr(strBuilder,string);
+			return taskObj.getFirstIndexOfStr(strBuilder,string);
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
@@ -259,9 +281,9 @@ public class StringBuilderRunner{
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
 		}
 	}
-	public StringBuilder insertString(StringBuilder strBuilder,String string,int index) throws DataValidationException{
+	public StringBuilder insertString(StringBuilder strBuilder,String string,String delimiter,int index) throws DataValidationException{
 		try{
-			return taskObj.insertToStrBuilder(strBuilder,string,index);
+			return taskObj.insertToStrBuilder(strBuilder,string,delimiter,index);
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
@@ -283,9 +305,9 @@ public class StringBuilderRunner{
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
 		}
 	}
-	public StringBuilder replaceChar(StringBuilder strBuilder,char oldChar,char newChar) throws DataValidationException{
+	public StringBuilder replaceChar(StringBuilder strBuilder,String oldDelimiter,String newDelimiter) throws DataValidationException{
 		try{
-			return taskObj.replaceCharStrBuilder(strBuilder,oldChar,newChar);
+			return taskObj.replaceStringInStrBuilder(strBuilder,oldDelimiter,newDelimiter);
 		}
 		catch(DataValidationException e){
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
@@ -308,8 +330,28 @@ public class StringBuilderRunner{
 			throw new DataValidationException("ERROR FROM RUNNER ",e);
 		}
 	}
-		
+	public String createStr(Scanner scanner) throws DataValidationException{
+		System.out.print("Enter minimum number of characters  ");
+		int minChar = scanner.nextInt();
+		scanner.nextLine();
+		System.out.print("ENTER A STRING ");
+		String string = scanner.nextLine();
+		int lengthOfStr =  Utility.getLength(string);
+		if ( lengthOfStr < minChar ){
+		while (true){
+			
+			System.out.print("THE LENGTH IS LESS THAN "+minChar+"ENTER A STRING ");
+			string = scanner.nextLine();
+			lengthOfStr =  Utility.getLength(string);
+			if ( lengthOfStr > minChar ){
+				break;
+			}
+			}
+		}	
+		return string;
+	}
 }
+
 	
 	
 						

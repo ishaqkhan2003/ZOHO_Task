@@ -1,7 +1,7 @@
 package com.stringbuilder.stringbuildertask;
 import java.util.*;
 import com.exceptionhandling.DataValidationException;
-import com.utility.UtilityClass;
+import com.utility.Utility;
 public class StringBuilderTask{
 	public StringBuilder getStrBuilder(){
 		return new StringBuilder();
@@ -18,12 +18,11 @@ public class StringBuilderTask{
 		return appendToStrBuilder(strBuilder,strArray,"");
 	}
 	public StringBuilder appendToStrBuilder(StringBuilder strBuilder,String[]  strArray,String delimitingChar) throws DataValidationException{
-		UtilityClass.checkNull(strBuilder);
-		UtilityClass.checkNull(strArray);
-		if ( UtilityClass.getLength(strBuilder) != 0){
+		int lengthOfStrBuilder = Utility.getLength(strBuilder);
+		if ( lengthOfStrBuilder != 0){
 			strBuilder.append(delimitingChar);
 		}
-		int sizeOfArray = UtilityClass.getLength(strArray);
+		int sizeOfArray = Utility.getLength(strArray);
 		for (int i = 0;i< sizeOfArray;i++){
 			if (i<(sizeOfArray-1)){
 				strBuilder.append(strArray[i] + delimitingChar);
@@ -36,25 +35,34 @@ public class StringBuilderTask{
 		return strBuilder;
 	}
 	public int getLastIndexOf(StringBuilder strBuilder,String str) throws DataValidationException{
-		UtilityClass.checkNull(strBuilder);
+		Utility.checkNull(strBuilder);
 		return strBuilder.lastIndexOf(str);
 	}
-	public int getIndexOfStr(StringBuilder strBuilder,String str) throws DataValidationException
+	public int getFirstIndexOfStr(StringBuilder strBuilder,String str) throws DataValidationException
 	{
-		UtilityClass.checkNull(strBuilder);
+		Utility.checkNull(strBuilder);
 		return strBuilder.indexOf(str);
 	}
-	public StringBuilder insertToStrBuilder(StringBuilder strBuilder,String string,int index) throws DataValidationException
+	public StringBuilder insertToStrBuilder(StringBuilder strBuilder,String string,String delimiter,int index) throws DataValidationException
 	{
-		UtilityClass.checkBoundary(UtilityClass.getLength(strBuilder),index+1);
-		return strBuilder.insert(index,string);
+		int lengthOfStrBuilder = Utility.getLength(strBuilder);
+		Utility.checkBoundary(lengthOfStrBuilder,index+1);
+		if ( index == 1){
+			return strBuilder.insert(0,string+delimiter);
+		}
+		else if ( index == lengthOfStrBuilder ){
+			return strBuilder.insert(index-1,string+delimiter);
+		}
+		else{
+			
+		return strBuilder.insert(getCustomIndexOf(strBuilder,delimiter,index-1),delimiter+string);
+		}
 	}
 	public StringBuilder delFromStrBuilder(StringBuilder strBuilder,int start,int end)throws DataValidationException{
-		UtilityClass.checkNull(strBuilder);
+		Utility.checkNull(strBuilder);
 		return strBuilder.delete(start,end);
 	}
 	public int getCustomIndexOf(StringBuilder strBuilder, String delimiter, int position) throws DataValidationException{
-		UtilityClass.checkNull(strBuilder);
 		int index = 0;
 		int fromIndex = 0;    
 		for (int i=0; i<position; i++)
@@ -67,33 +75,33 @@ public class StringBuilderTask{
 		
 	public StringBuilder delFromStrBuilder(StringBuilder strBuilder,int position,String delimiter) throws DataValidationException
 	{
-		//UtilityClass.checkNull(strBuilder);
+		int lengthOfStrBuilder = Utility.getLength(strBuilder);
+		Utility.checkBoundary(lengthOfStrBuilder,position);
 		int start = getCustomIndexOf(strBuilder,delimiter,position-1);
 		int end = getCustomIndexOf(strBuilder,delimiter,position);
 		return delFromStrBuilder(strBuilder,start,end);
 	}
-	public StringBuilder replaceCharStrBuilder(StringBuilder strBuilder,char oldChar,char newChar) throws DataValidationException
+	public StringBuilder replaceStringInStrBuilder(StringBuilder strBuilder,String oldDelimiter,String newDelimiter) throws DataValidationException
 	{
-		UtilityClass.checkNull(strBuilder);
-		int lengthOfStrBuilder = UtilityClass.getLength(strBuilder);
-		char character;
-		for ( int i=0;i<lengthOfStrBuilder;i++)
-		{
-			character = strBuilder.charAt(i);
-			if ( character == oldChar)
-			{
-				strBuilder.setCharAt(i,newChar);
+		Utility.checkNull(strBuilder);
+		int index,length = Utility.getLength(oldDelimiter);
+		while (true){			
+			index = getFirstIndexOfStr(strBuilder,oldDelimiter);
+			if ( index == -1){
+				break ;
 			}
+			strBuilder.replace(index,index+length,newDelimiter);			
 		}
 		return strBuilder;
 	}
-	public StringBuilder reverseStrBuilder(StringBuilder strBuilder) throws DataValidationException
-	{
-		UtilityClass.checkNull(strBuilder);
+	public StringBuilder reverseStrBuilder(StringBuilder strBuilder) throws DataValidationException	{
+		Utility.checkNull(strBuilder);
 		return strBuilder.reverse();
 	}
 	public StringBuilder replaceStringInStrBuilder(StringBuilder strBuilder,int start,int end,String str) throws DataValidationException{
-		UtilityClass.checkNull(strBuilder);
+		int lengthOfStrBuilder = Utility.getLength(strBuilder);
+		Utility.checkBoundary(lengthOfStrBuilder,start);
+		Utility.checkBoundary(lengthOfStrBuilder,end);
 		return strBuilder.replace(start,end,str);
 	}		
 }		

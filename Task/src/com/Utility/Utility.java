@@ -1,6 +1,8 @@
 package com.utility ;
 import com.exceptionhandling.DataValidationException;
+import java.util.*;
 public  class Utility {
+	static Scanner scanner = new Scanner(System.in);
 	public static void checkNull(Object obj) throws DataValidationException{
 		if ( obj == null )
 		{
@@ -24,6 +26,15 @@ public  class Utility {
 	public static int getLength(String[] strArray)throws DataValidationException{
 		checkNull(strArray);
 		return strArray.length;
+	}
+	public static int getIntInput(){
+		
+		int integer = scanner.nextInt();
+		scanner.nextLine();
+		return integer;
+	}
+	public static String getStrInput(){
+		return scanner.nextLine();
 	}
 
 }

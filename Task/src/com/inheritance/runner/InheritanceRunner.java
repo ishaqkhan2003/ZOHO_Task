@@ -44,10 +44,7 @@ public class InheritanceRunner{
 				default :
 						System.out.println("Enter a valid choice ");
 						break;
-		}
-		
-	
-	
+		}		
 	}	
 }
 	public void runCaseTwo(){
@@ -125,9 +122,7 @@ public class InheritanceRunner{
 			else {
 				
 				System.out.println("The Car type is Sedan ");
-			}
-		
-				
+			}				
 	}
 	public void runCaseFive(){
 		Swift swiftObjOne = new Swift();
@@ -176,9 +171,6 @@ public class InheritanceRunner{
 	public void runcaseTen(){
 		Duck duckObj = new Duck();
 		duckObj.fly();
-		duckObj.speak();
-		
-	}
-	
-	
+		duckObj.speak();		
+	}	
 }

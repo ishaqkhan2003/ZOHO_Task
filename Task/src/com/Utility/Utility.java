@@ -36,5 +36,15 @@ public  class Utility {
 	public static String getStrInput(){
 		return scanner.nextLine();
 	}
+	public static float getFloatInput(){
+		float floatValue = scanner.nextFloat();
+		scanner.nextLine();
+		return floatValue;
+	}
+	public static long getLongInput(){
+		long longValue = scanner.nextLong();
+		scanner.nextLine();
+		return longValue;
+	}
 
 }

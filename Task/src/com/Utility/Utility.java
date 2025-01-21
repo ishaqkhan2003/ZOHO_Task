@@ -1,6 +1,6 @@
 package com.utility ;
 import com.exceptionhandling.DataValidationException;
-import java.util.*;
+import java.util.Scanner;
 public  class Utility {
 	static Scanner scanner = new Scanner(System.in);
 	public static void checkNull(Object obj) throws DataValidationException{

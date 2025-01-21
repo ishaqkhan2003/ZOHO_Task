@@ -37,8 +37,7 @@ public class ArrayListTask {
 			return list.lastIndexOf(element);
 		}
 		public <T> void insertToList(List<T> list,T element,int index)throws DataValidationException{
-			int length = getListSize(list);
-			Utility.checkBoundary(length,index);
+			Utility.checkBoundary(getListSize(list),index);
 			list.add(index,element);
 		}
 		public <T> Iterator<T> getIterator(List<T> list){
@@ -46,13 +45,11 @@ public class ArrayListTask {
 			return  iter;
 		}
 		public <T> T getElementAt(List<T> list,int index) throws DataValidationException{
-			int lengthOfArray = getListSize(list);
-			Utility.checkBoundary(lengthOfArray,index);
+			Utility.checkBoundary(getListSize(list),index);
 			return list.get(index);
 		}
 		public <T> void removeElementAt(List<T> list,int index) throws DataValidationException{
-			int lengthOfArray = getListSize(list);
-			Utility.checkBoundary(lengthOfArray,index);
+			Utility.checkBoundary(getListSize(list),index);
 			list.remove(index);			
 		}
 		public <T> void removeAllFromList(List<T> listOne,List<T> listTwo)throws DataValidationException{
@@ -63,8 +60,7 @@ public class ArrayListTask {
 		public <T> void retainAllFromList(List<T> listOne,List<T> listTwo) throws DataValidationException{
 			Utility.checkNull(listOne);
 			Utility.checkNull(listTwo);
-			listOne.retainAll(listTwo);
-			
+			listOne.retainAll(listTwo);			
 		}
 		public <T> void clearAll(List<T> list)throws DataValidationException{
 			Utility.checkNull(list);

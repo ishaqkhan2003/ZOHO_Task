@@ -90,6 +90,27 @@ public class ArrayListRunner{
 	}
 	public void showTask() {
 		
+		System.out.println("1.To create an ArrayList ");
+		System.out.println("2.To create String ArrayList and add string ");
+		System.out.println("3.To create Integer ArrayList and add int ");
+		System.out.println("4.To create CustomeObject ArrayList and add object ");
+		System.out.println("5.To create Object ArrayList and add String,Integer,Object");
+		System.out.println("6.To create String ArrayList and find index");
+		System.out.println("7.To create Strnig ArrayList and use Iterator ");
+		System.out.println("8.To create an ArrayList and print string at given index ");
+		System.out.println("9.To create an ArrayList and find first and last index of duplicate string");
+		System.out.println("10.To create an ArrayList and insert string ");
+		System.out.println("11.To create an ArrayList and create subList  ");
+		System.out.println("12.To create two  ArrayList and create another ArrayList in sequence ");
+		System.out.println("13.To create an ArrayList create another ArrayList in reverse sequence  ");
+		System.out.println("14.To create an ArrayList and remove a value ");
+		System.out.println("15.To create two ArrayList and deletet same element ");
+		System.out.println("16.To create an ArrayList and retain same element ");
+		System.out.println("17.To create an long ArrayList and remove all element ");
+		System.out.println("18.To create an ArrayList and check if String is present ");
+		System.out.println("19.Exit ");
+		System.out.println("20. show menu ");
+	}
 	}
 	public <T> void printArrayList(List<T> arrayList) throws DataValidationException{
 		Utility.checkNull(arrayList);
@@ -101,7 +122,7 @@ public class ArrayListRunner{
 	public void operationOne() throws DataValidationException {
 		try {
 			List<Object> newArrayList = taskObj.getArrayList();
-			System.out.println("The size of Array List is = "+taskObj.getListSize(newArrayList));
+			printArrayListSize(newArrayList);
 		}
 		catch ( DataValidationException e){
 			throw new DataValidationException("Error from runner class ",e);
@@ -121,12 +142,7 @@ public class ArrayListRunner{
 	public void operationThree() throws DataValidationException{
 		try{
 			List<Integer> intArrayList = taskObj.getArrayList();
-			System.out.print("Enter number of Intergers to add ");
-			int noOfInt = Utility.getIntInput(),i;
-			for (i=0;i<noOfInt;i++){
-				System.out.print("Enter integer "+(i+1)+"- ");
-				taskObj.addToList(intArrayList,Utility.getIntInput());
-			}
+			addIntToArrayList(intArrayList);
 			printArrayList(intArrayList);
 			printArrayListSize(intArrayList);
 				
@@ -139,7 +155,7 @@ public class ArrayListRunner{
 	public void operationFour() throws DataValidationException{
 		try{
 			List<CustomeObject> customeArrayList = taskObj.getArrayList();
-			System.out.print("ENter number of objects to be added  ");
+			System.out.print("Enter number of objects to be added  ");
 			int noOfObj = Utility.getIntInput(),i;
 			for ( i = 0;i<noOfObj;i++){
 				CustomeObject customeObj =  new CustomeObject("customeObj_"+(i+1));
@@ -425,6 +441,15 @@ public class ArrayListRunner{
 		catch ( DataValidationException e ){
 			throw new DataValidationException("Error from Runner class ",e);
 		}
+	}
+	public void addIntToArrayList(List<Integer> arrayList)throws DataValidationException{
+		System.out.print("Enter number of Intergers to add ");
+		int noOfInt = Utility.getIntInput(),i;
+		for (i=0;i<noOfInt;i++){
+			System.out.print("Enter integer "+(i+1)+"- ");
+			taskObj.addToList(arrayList,Utility.getIntInput());
+		}
+		
 	}
 	public void addStringToArrayList(List<String> arrayList) throws DataValidationException{
 		System.out.print("Enter Number of Strings to add ");

@@ -1,7 +1,7 @@
 package com.string.stringrunner;
 import com.string.stringtask.StringTask;
 import java.util.Scanner;
-import java.util.*;
+import java.util.ArrayList;
 import com.exceptionhandling.DataValidationException;
 public class StringTestRunner
 {

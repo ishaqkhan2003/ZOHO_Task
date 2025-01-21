@@ -1,5 +1,12 @@
 package com.inheritance.runner;
-import com.inheritance.task.*;
+import com.inheritance.task.Car;
+import com.inheritance.task.Scross;
+import com.inheritance.task.XUV;
+import com.inheritance.task.Swift;
+import com.inheritance.task.BirdAbstract;
+import com.inheritance.task.ParrotMod;
+import com.inheritance.task.Duck;
+import com.inheritance.task.Bird;
 import com.utility.Utility;
 public class InheritanceRunner{
 	public static void main(String args[]){

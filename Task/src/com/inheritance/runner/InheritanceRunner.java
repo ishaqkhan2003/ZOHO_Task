@@ -1,5 +1,12 @@
 package com.inheritance.runner;
-import com.inheritance.task.*;
+import com.inheritance.task.Car;
+import com.inheritance.task.Scross;
+import com.inheritance.task.XUV;
+import com.inheritance.task.Swift;
+import com.inheritance.task.BirdAbstract;
+import com.inheritance.task.ParrotMod;
+import com.inheritance.task.Duck;
+import com.inheritance.task.Bird;
 import com.utility.Utility;
 public class InheritanceRunner{
 	public static void main(String args[]){
@@ -44,10 +51,7 @@ public class InheritanceRunner{
 				default :
 						System.out.println("Enter a valid choice ");
 						break;
-		}
-		
-	
-	
+		}		
 	}	
 }
 	public void runCaseTwo(){
@@ -125,9 +129,7 @@ public class InheritanceRunner{
 			else {
 				
 				System.out.println("The Car type is Sedan ");
-			}
-		
-				
+			}				
 	}
 	public void runCaseFive(){
 		Swift swiftObjOne = new Swift();
@@ -176,9 +178,6 @@ public class InheritanceRunner{
 	public void runcaseTen(){
 		Duck duckObj = new Duck();
 		duckObj.fly();
-		duckObj.speak();
-		
-	}
-	
-	
+		duckObj.speak();		
+	}	
 }

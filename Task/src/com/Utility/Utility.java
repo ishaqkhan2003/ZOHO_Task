@@ -1,6 +1,7 @@
 package com.utility ;
 import com.exceptionhandling.DataValidationException;
-import java.util.*;
+import java.util.Scanner;
+import java.util.Map;
 public  class Utility {
 	static Scanner scanner = new Scanner(System.in);
 	public static void checkNull(Object obj) throws DataValidationException{
@@ -14,6 +15,10 @@ public  class Utility {
 		{
 			throw new DataValidationException("Out of Index ");
 		}
+	}
+	public static <K,V>int getLength(Map<K,V> map) throws DataValidationException{
+		checkNull(map);
+		return map.size();
 	}
 	public static int getLength(String string) throws DataValidationException{
 		checkNull(string);
@@ -35,6 +40,16 @@ public  class Utility {
 	}
 	public static String getStrInput(){
 		return scanner.nextLine();
+	}
+	public static float getFloatInput(){
+		float floatValue = scanner.nextFloat();
+		scanner.nextLine();
+		return floatValue;
+	}
+	public static long getLongInput(){
+		long longValue = scanner.nextLong();
+		scanner.nextLine();
+		return longValue;
 	}
 
 }

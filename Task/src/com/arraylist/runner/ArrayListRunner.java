@@ -111,7 +111,7 @@ public class ArrayListRunner{
 		System.out.println("19.Exit ");
 		System.out.println("20. show menu ");
 	}
-	}
+	
 	public <T> void printArrayList(List<T> arrayList) throws DataValidationException{
 		Utility.checkNull(arrayList);
 		System.out.println("The Array List is "+arrayList);

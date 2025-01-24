@@ -31,4 +31,8 @@ public class HashMapTask{
 		Utility.checkNull(map);
 		map.replaceAll(biFunction);
 	}
+	public <K,V> V getValue(Map<K,V> map,K key) throws DataValidationException{
+		Utility.checkNull(map);
+		return map.get(key);
+	}
 }

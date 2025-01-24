@@ -48,6 +48,9 @@ public class HashMapRunner{
 				case 10:
 						runnerObj.operationTen();
 						break;
+				case 11:
+						runnerObj.operationEleven();
+						break;
 				case 21:
 						bool =  false;
 						break;
@@ -212,17 +215,37 @@ public class HashMapRunner{
 		catch ( DataValidationException e){
 			e.printStackTrace();
 		}
-	}
+	} 	
 	public void operationTen() throws DataValidationException{
 		try{
 			Map<String,String> newHashMap = taskObj.getHashMap();
 			addStrToHashMap(newHashMap);
 			
-			BiFunction<String,String,String> biFunction = (key,value)->value = Utility.getStrInput();
+			BiFunction<String,String,String> biFunction = (key,value)->{System.out.print("Enter new value  for key - "+key);
+																		value = Utility.getStrInput();
+																		return value;};
 			taskObj.replaceAllValue(newHashMap,biFunction);
 			printHashMap(newHashMap);
 			printHashMapSize(newHashMap);	
 			
+		}
+		catch (DataValidationException e){
+			e.printStackTrace();
+		}
+	}
+	public void operationEleven() throws DataValidationException{
+		try{
+			Map<String,String> newHashMap = taskObj.getHashMap();
+			addStrToHashMap(newHashMap);
+			System.out.print("Enter key to fetch vaue ");
+			String key = Utility.getStrInput();
+			String value = taskObj.getValue(newHashMap,key);
+			if ( value ==  null){
+				System.out.println("The key doesnt exist ");
+			}
+			else{
+				System.out.println("The Value for "+key+" is "+value);
+			}
 		}
 		catch (DataValidationException e){
 			e.printStackTrace();
